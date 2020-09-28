@@ -1,36 +1,32 @@
 @import "src/styles/variables";
 
+$pic-size: 40px;
 .list-item {
-  display: flex;
-  align-items: center;
-  justify-content: start;
+  display: block;
+  clear: both;
   font-family: $roboto;
+  cursor: pointer;
+  margin-top: 0;
+  padding-top: 0;
 
   &__img {
-    display: inline-block;
+    float: left;
     padding: 10px;
-    flex: 0 0 0;
 
     img {
-      height: 50px;
-      width: 50px;
+      height: $pic-size;
+      width: $pic-size;
       border-radius: 50%;
       object-fit: cover;
     }
   }
 
   &__text-data {
-    display: inline;
-    margin-top: -5px;
-    flex: 0 1;
+    padding-top: 10px;
+    padding-right: 20px;
   }
 
   &__name {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 100%;
-
     font-size: 16px;
     margin-bottom: 3px;
     color: rgba(white, 0.9);
@@ -38,12 +34,24 @@
   }
 
   &__message {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-    width: 70%;
-
     font-size: 14px;
     color: rgba(white, 0.7);
+
+    overflow:hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
+
+  hr {
+    height: 1px;
+    margin: 15px 15px 0 60px;
+
+    color: gray;
+    background-color: gray;
+    border: none;
+  }
+}
+
+li:hover {
+  background-color: rgba(grey, 0.7);
 }

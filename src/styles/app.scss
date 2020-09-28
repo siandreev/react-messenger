@@ -31,14 +31,17 @@ html,
   justify-content: space-around;
 
   &__column-s {
-    flex: 1 1;
+    flex-basis: 33.33%;
     height: 100%;
     background-color: $gray;
-    overflow: hidden;
+
+    max-width: 33.33%;
+    min-width: 240px;
+
   }
 
   &__column {
-    flex: 3 0;
+    flex-basis: 66.67%;
     height: 100%;
   }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import ListItem from "components/ListItem";
 import SearchBar from "components/SearchBar";
+import { Scrollbar } from 'react-scrollbars-custom';
 
 import "./ContactsList.scss"
 
@@ -22,11 +23,15 @@ class ContactsList extends React.Component {
         return (
             <div className="contacts-list">
                 <SearchBar filter={this.filterContacts}/>
-                <div>
-                    {
-                        this.state.contacts.map((item, index) => <ListItem person={item}/>)
-                    }
-                </div>
+                <Scrollbar style={{"height": "100%"}}>
+                    <div >
+                    <ul className="contacts-list__ul">
+                        {
+                            this.state.contacts.map((item, index) => <ListItem key={index} person={item}/>)
+                        }
+                    </ul>
+                    </div>
+                </Scrollbar>
             </div>
         );
     }
