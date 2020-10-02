@@ -1,0 +1,46 @@
+@import "src/styles/variables";
+
+.message {
+  list-style-type: none;
+  display: block;
+
+  font-family: $roboto;
+
+  &__wrapper {
+    background-color: $gray;
+    width: 45%;
+    border-radius: 30px;
+
+    overflow: hidden;
+  }
+
+  &__content {
+    padding: 5px 30px;
+  }
+
+  &__text {
+    color: rgba(white, 0.9);
+    line-height: 16px;
+    font-size: 16px;
+  }
+
+  &__time {
+    color: rgba(white, 0.7);
+    float: right;
+    line-height: 14px;
+    font-size: 14px;
+    padding-top: 6px;
+  }
+
+  &__separator {
+    clear: both;
+  }
+
+  &_incoming {
+    float: left;
+  }
+
+  &_outgoing {
+    float: right;
+  }
+}

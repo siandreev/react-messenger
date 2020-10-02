@@ -1,0 +1,53 @@
+@import "src/styles/variables";
+
+.messages-input {
+  height: 40px;
+  display: flex;
+  padding: 10px 20px;
+  align-items: center;
+
+  &__attach-file {
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: center;
+    padding-right: 5px;
+
+    color: white;
+    cursor: pointer;
+  }
+
+  &__textbox {
+    flex: 1 1 100px;
+    display: block;
+    overflow: hidden;
+    resize: none;
+    min-height: 20px;
+    line-height: 20px;
+    padding: 5px 7px;
+
+    font-family: $roboto;
+    border-radius: 5px;
+    background-color: white;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:empty:not(:focus):before{
+      content:attr(data-placeholder);
+      color: rgba($gray, 0.8);
+      font-family: $roboto;
+      font-size: 14px;
+    }
+  }
+
+  &__send {
+    flex: 0 0 40px;
+    display: flex;
+    justify-content: center;
+    padding-left: 5px;
+
+    color: white;
+    cursor: pointer;
+  }
+}
