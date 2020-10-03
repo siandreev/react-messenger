@@ -24,7 +24,7 @@ class ContactsList extends React.Component {
             <div className="contacts-list">
                 <SearchBar filter={this.filterContacts}/>
                 <Scrollbar style={{"height": "100%"}}>
-                    <div >
+                    <div>
                     <ul className="contacts-list__ul">
                         {
                             this.state.contacts.map((item, index) => <ListItem key={index} person={item}/>)

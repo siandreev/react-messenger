@@ -1,6 +1,8 @@
 $message-padding: 20px;
 
 .messages-list {
+  overflow: auto;
+  height: 100%;
   ul {
     padding: 0 $message-padding;
     vertical-align: bottom;
