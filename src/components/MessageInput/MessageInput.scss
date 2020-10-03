@@ -5,6 +5,7 @@
   display: flex;
   padding: 10px 20px;
   align-items: center;
+  max-width: 100%;
 
   &__attach-file {
     flex: 0 0 40px;
@@ -16,18 +17,42 @@
     cursor: pointer;
   }
 
-  &__textbox {
+  &__field {
     flex: 1 1 100px;
-    display: block;
-    overflow: hidden;
+    display: flex;
+    vertical-align: center;
+
+    position: relative;
+    border-radius: 5px;
+    background-color: white;
+
+    i {
+      cursor: pointer;
+      color: $gray;
+    }
+  }
+
+  &__icon-wrapper {
+    flex: 0 0 40px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__textbox {
+    flex: 1 1 200px;
+    overflow: auto;
     resize: none;
     min-height: 20px;
+    max-height: 60px;
     line-height: 20px;
     padding: 5px 7px;
 
+    word-break: break-all;
+    word-wrap: break-word;
     font-family: $roboto;
-    border-radius: 5px;
-    background-color: white;
+
 
     &:focus {
       outline: none;
