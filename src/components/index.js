@@ -1,2 +1,2 @@
 export {default as ContactsList} from "./ContactsList";
-export {default as MessagesList} from "./MessagesList";
+export {default as MessagesWindow} from "./MessagesWindow";

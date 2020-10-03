@@ -1,5 +1,5 @@
 import React from 'react';
-import {ContactsList, MessagesList} from "components"
+import {ContactsList, MessagesWindow} from "components"
 import { stack as Menu } from 'react-burger-menu'
 
 import 'styles/burger.scss';
@@ -110,7 +110,7 @@ function App() {
                     <ContactsList contacts={contacts}/>
                 </div>
               <div className="main-wrapper__column">
-                  <MessagesList messages={messages} person="Луи Армстронг" />
+                  <MessagesWindow messages={messages} person="Луи Армстронг" />
               </div>
             </div>
             <div className="footer"></div>
