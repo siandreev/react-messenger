@@ -1,8 +1,10 @@
 import React from 'react';
-import {ContactsList, MessagesWindow} from "components"
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {ContactsList, MessagesWindow, RegistrationForm} from "components"
 import { stack as Menu } from 'react-burger-menu'
 
 import 'styles/burger.scss';
+import 'styles/authorization-panel.scss'
 
 function App() {
   let contacts = [
@@ -132,26 +134,46 @@ function App() {
   ]
 
   return (
-    <div className="content">
-        <Menu pageWrapId={"page-wrap"}>
-            <a id="home" className="menu-item" href="/">Home</a>
-            <a id="about" className="menu-item" href="/about">About</a>
-            <a id="contact" className="menu-item" href="/contact">Contact</a>
-        </Menu>
-        <main  id="page-wrap" className="content">
-            <div className="header">
-            </div>
-            <div className="main-wrapper">
-                <div className="main-wrapper__column-s">
-                    <ContactsList contacts={contacts}/>
-                </div>
-              <div className="main-wrapper__column">
-                  <MessagesWindow messages={messages} person="Луи Армстронг" />
-              </div>
-            </div>
-            <div className="footer"></div>
-        </main>
-    </div>
+      <Router>
+          <Switch>
+              <Route path="/login" exact>
+                  <div className="authorization-panel">
+                      <div className="authorization-panel__wrapper">
+                          <RegistrationForm />
+                      </div>
+                  </div>
+              </Route>
+              <Route path="/signup" exact>
+                  <div className="authorization-panel">
+                      <div className="authorization-panel__wrapper">
+
+                      </div>
+                  </div>
+              </Route>
+              <Route path="/" exact>
+                  <div className="content">
+                      <Menu pageWrapId={"page-wrap"}>
+                          <a id="home" className="menu-item" href="/">Home</a>
+                          <a id="about" className="menu-item" href="/about">About</a>
+                          <a id="contact" className="menu-item" href="/contact">Contact</a>
+                      </Menu>
+                      <main  id="page-wrap" className="content">
+                          <div className="header">
+                          </div>
+                          <div className="main-wrapper">
+                              <div className="main-wrapper__column-s">
+                                  <ContactsList contacts={contacts}/>
+                              </div>
+                              <div className="main-wrapper__column">
+                                  <MessagesWindow messages={messages} person="Луи Армстронг" />
+                              </div>
+                          </div>
+                          <div className="footer"></div>
+                      </main>
+                  </div>
+              </Route>
+          </Switch>
+      </Router>
   );
 }
 

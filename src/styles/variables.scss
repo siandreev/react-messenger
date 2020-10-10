@@ -3,4 +3,16 @@
 
 $header-height: 50px;
 $roboto: 'Roboto', seif;
-$gray: #3c3f41;
+$primary: #212121;
+$secondary: #323232;
+$active: #0d7377;
+$lightActive: #14ffec;
+$white: #eeeeee;
+
+:export {
+  primary: $primary;
+  secondary: $secondary;
+  active: $active;
+  lightActive: $lightActive;
+  white: $white;
+}

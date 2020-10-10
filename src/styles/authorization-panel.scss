@@ -1,0 +1,12 @@
+@import "variables";
+
+.authorization-panel {
+  height: 100%;
+  background-color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__wrapper {
+  }
+}

@@ -28,7 +28,7 @@
 
     i {
       cursor: pointer;
-      color: $gray;
+      color: $primary;
     }
   }
 
@@ -60,7 +60,7 @@
 
     &:empty:not(:focus):before{
       content:attr(data-placeholder);
-      color: rgba($gray, 0.8);
+      color: $secondary;
       font-family: $roboto;
       font-size: 14px;
     }
