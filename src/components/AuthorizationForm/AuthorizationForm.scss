@@ -1,6 +1,6 @@
-@import "src/styles/variables";
+@import "styles/variables";
 
-.registration-form {
+.authorization-form {
   min-width: 400px;
   min-height: 500px;
   padding-top: 30px;
@@ -16,5 +16,11 @@
 
   &__header {
     text-transform: uppercase;
+  }
+
+  &__button {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
   }
 }

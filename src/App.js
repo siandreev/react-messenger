@@ -1,6 +1,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {ContactsList, MessagesWindow, RegistrationForm} from "components"
+import {ContactsList, MessagesWindow, RegistrationForm, AuthorizationForm} from "components"
 import { stack as Menu } from 'react-burger-menu'
 
 import 'styles/burger.scss';
@@ -139,14 +139,14 @@ function App() {
               <Route path="/login" exact>
                   <div className="authorization-panel">
                       <div className="authorization-panel__wrapper">
-                          <RegistrationForm />
+                          <AuthorizationForm />
                       </div>
                   </div>
               </Route>
               <Route path="/signup" exact>
                   <div className="authorization-panel">
                       <div className="authorization-panel__wrapper">
-
+                          <RegistrationForm />
                       </div>
                   </div>
               </Route>

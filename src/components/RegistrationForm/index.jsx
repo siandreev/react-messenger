@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory } from 'react-router-dom';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Button, Paper, TextField} from './RegistrationForm.jsx';
+import Modal from "../Modal"
 
 import './RegistrationForm.scss';
 
@@ -9,25 +10,32 @@ class RegistrationForm extends React.Component{
     constructor(props) {
         super(props);
         this.state={
-            tag: {
-                value: "",
-                isValid: true
+            fields: {
+                tag: {
+                    value: "",
+                    isValid: true
+                },
+                firstName: {
+                    value: "",
+                    isValid: true
+                },
+                lastName: {
+                    value: "",
+                    isValid: true
+                },
+                email: {
+                    value: "",
+                    isValid: true
+                },
+                password: {
+                    value: "",
+                    isValid: true
+                }
             },
-            firstName: {
-                value: "",
-                isValid: true
-            },
-            lastName: {
-                value: "",
-                isValid: true
-            },
-            email: {
-                value: "",
-                isValid: true
-            },
-            password: {
-                value: "",
-                isValid: true
+            modal: {
+                open: false,
+                header: "",
+                text: ""
             }
         }
         this.setTag = this.setTag.bind(this);
@@ -36,6 +44,7 @@ class RegistrationForm extends React.Component{
         this.setEmail = this.setEmail.bind(this);
         this.setPassword = this.setPassword.bind(this);
         this.submit = this.props.submit.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     setTag(e) {
@@ -57,25 +66,28 @@ class RegistrationForm extends React.Component{
     setPassword(e) {
         const value = e.target.value;
         const isValid = value.length >= 5;
-        this.setState({
-            password: {
-                value,
-                isValid
-            }
-        })
+        const fields = { ...this.state.fields }
+        fields.password = { value, isValid }
+        this.setState({fields})
     }
 
     saveTextFieldInfo(field, regexp, value) {
         const isValid = regexp.test(value);
+        const fields = { ...this.state.fields }
+        fields[field] = { value, isValid }
+        this.setState({fields})
+    }
+
+    closeModal() {
         this.setState({
-            [field]: {
-                value,
-                isValid
+            modal: {
+                open: false
             }
         })
     }
 
     render() {
+        const fields = this.state.fields;
         return(
             <Paper elevation={3}>
             <div className="registration-form">
@@ -85,10 +97,10 @@ class RegistrationForm extends React.Component{
                 <div className="registration-form__row">
                     <TextField
                         placeholder="tag"
-                        error={!this.state.tag.isValid}
-                        helperText={!this.state.tag.isValid ?
+                        error={!fields.tag.isValid}
+                        helperText={!fields.tag.isValid ?
                             "Tag should only contain letters" : ""}
-                        className={this.state.tag.isValid ? "" : "wrong"}
+                        className={fields.tag.isValid ? "" : "wrong"}
                         onChange={this.setTag}
                         InputProps={{
                             startAdornment: <InputAdornment position="start">@</InputAdornment>,
@@ -98,30 +110,30 @@ class RegistrationForm extends React.Component{
                 <div className="registration-form__row">
                     <TextField
                         label="First name"
-                        error={!this.state.firstName.isValid}
-                        helperText={!this.state.firstName.isValid ?
+                        error={!fields.firstName.isValid}
+                        helperText={!fields.firstName.isValid ?
                             "First name must be letters only and start with a capital letter" : ""}
-                        className={this.state.firstName.isValid ? "" : "wrong"}
+                        className={fields.firstName.isValid ? "" : "wrong"}
                         onChange={this.setFirstName}
                     />
                 </div>
                 <div className="registration-form__row">
                     <TextField
                         label="Last name"
-                        error={!this.state.lastName.isValid}
-                        helperText={!this.state.lastName.isValid ?
+                        error={!fields.lastName.isValid}
+                        helperText={!fields.lastName.isValid ?
                             "Last name must be letters only and start with a capital letter" : ""}
-                        className={this.state.lastName.isValid ? "" : "wrong"}
+                        className={fields.lastName.isValid ? "" : "wrong"}
                         onChange={this.setLastName}
                     />
                 </div>
                 <div className="registration-form__row">
                     <TextField
                         label="Email"
-                        error={!this.state.email.isValid}
-                        helperText={!this.state.email.isValid ?
+                        error={!fields.email.isValid}
+                        helperText={!fields.email.isValid ?
                             "Please enter a valid email" : ""}
-                        className={this.state.email.isValid ? "" : "wrong"}
+                        className={fields.email.isValid ? "" : "wrong"}
                         onChange={this.setEmail}
                     />
                 </div>
@@ -129,20 +141,25 @@ class RegistrationForm extends React.Component{
                     <TextField
                         type="password"
                         label="Password"
-                        error={!this.state.password.isValid}
-                        helperText={!this.state.password.isValid ?
+                        error={!fields.password.isValid}
+                        helperText={!fields.password.isValid ?
                             "Password length must be at least five" : ""}
-                        className={this.state.password.isValid ? "" : "wrong"}
+                        className={fields.password.isValid ? "" : "wrong"}
                         onChange={this.setPassword}
                     />
                 </div>
                 <div className="registration-form__row">
                      <Button
                          variant="contained"
-                         color="primary"
                          onClick={this.submit}
                      >Sign up
                      </Button>
+                     <Modal
+                         open={this.state.modal.open}
+                         onClose={this.closeModal}
+                         header={this.state.modal.header}
+                         text={this.state.modal.text}
+                     />
                 </div>
             </div>
             </Paper>
@@ -153,13 +170,27 @@ class RegistrationForm extends React.Component{
 export default () => {
     const history = useHistory();
     const submit = function() {
-        if (this.state.tag.isValid && this.state.tag.isValid !== "" &&
-            this.state.firstName.isValid && this.state.firstName !== "" &&
-            this.state.lastName.isValid && this.state.lastName !== "" &&
-            this.state.email.isValid && this.state.email !== "" &&
-            this.state.password.isValid && this.state.password !== "") {
+        const fields = { ...this.state.fields }
+        const incorrect = [];
 
+        for (let key in this.state.fields) {
+            if (!this.state.fields[key].isValid || this.state.fields[key].value === "") {
+                fields[key].isValid = false;
+                incorrect.push(key);
+            }
+        }
+
+        if (!incorrect.length) {
             history.push("/");
+        } else {
+            this.setState({
+                fields,
+                modal: {
+                    open: true,
+                    header: "The form is filled out incorrectly",
+                    text: `The following fields are not filled in correctly: ${incorrect.join(", ")}.`
+                }
+            })
         }
     }
 

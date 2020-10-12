@@ -3,9 +3,6 @@ import { styled } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import Modal from '@material-ui/core/Modal';
-import { IconButton } from '@material-ui/core';
-
 
 const ButtonJSS = styled(Button)({
     background: `linear-gradient(45deg, ${variables.active} 30%, ${variables.lightActive} 90%)`,
