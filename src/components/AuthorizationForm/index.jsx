@@ -61,31 +61,33 @@ class AuthorizationForm extends React.Component{
     render() {
         const fields = this.state.fields;
         return(
-            <Paper elevation={3}>
-                <div className="authorization-form">
-                    <div className="authorization-form__row">
-                        <h2 className="authorization-form__header">Sign up</h2>
+            <div className="authorization-form">
+                <Paper elevation={3}>
+                    <div className="authorization-form__header">
+                        <h2>Sign up</h2>
                     </div>
-                    <div className="authorization-form__row">
-                        <TextField
-                            label="Email"
-                            error={!fields.email.isValid}
-                            helperText={!fields.email.isValid ?
-                                "Please enter a valid email" : ""}
-                            className={fields.email.isValid ? "" : "wrong"}
-                            onChange={this.setEmail}
-                        />
-                    </div>
-                    <div className="authorization-form__row">
-                        <TextField
-                            type="password"
-                            label="Password"
-                            error={!fields.password.isValid}
-                            helperText={!fields.password.isValid ?
-                                "Password length must be at least five" : ""}
-                            className={fields.password.isValid ? "" : "wrong"}
-                            onChange={this.setPassword}
-                        />
+                    <div className="authorization-form__fields">
+                        <div className="authorization-form__row">
+                            <TextField
+                                label="Email"
+                                error={!fields.email.isValid}
+                                helperText={!fields.email.isValid ?
+                                    "Please enter a valid email" : ""}
+                                className={fields.email.isValid ? "" : "wrong"}
+                                onChange={this.setEmail}
+                            />
+                        </div>
+                        <div className="authorization-form__row">
+                            <TextField
+                                type="password"
+                                label="Password"
+                                error={!fields.password.isValid}
+                                helperText={!fields.password.isValid ?
+                                    "Password length must be at least five" : ""}
+                                className={fields.password.isValid ? "" : "wrong"}
+                                onChange={this.setPassword}
+                            />
+                        </div>
                     </div>
                     <div className="authorization-form__button">
                         <Button
@@ -100,8 +102,8 @@ class AuthorizationForm extends React.Component{
                             text={this.state.modal.text}
                         />
                     </div>
-                </div>
-            </Paper>
+                </Paper>
+            </div>
         )
     }
 }

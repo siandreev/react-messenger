@@ -138,16 +138,12 @@ function App() {
           <Switch>
               <Route path="/login" exact>
                   <div className="authorization-panel">
-                      <div className="authorization-panel__wrapper">
-                          <AuthorizationForm />
-                      </div>
+                      <AuthorizationForm />
                   </div>
               </Route>
               <Route path="/signup" exact>
                   <div className="authorization-panel">
-                      <div className="authorization-panel__wrapper">
-                          <RegistrationForm />
-                      </div>
+                      <RegistrationForm />
                   </div>
               </Route>
               <Route path="/" exact>

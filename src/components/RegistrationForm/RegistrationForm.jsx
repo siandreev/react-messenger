@@ -11,7 +11,7 @@ const ButtonJSS = styled(Button)({
     background: `linear-gradient(45deg, ${variables.active} 30%, ${variables.lightActive} 90%)`,
     border: 0,
     borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    boxShadow: '0 3px 5px 2px rgba(black, 0.4)',
     color: 'white',
     height: 48,
     padding: '0 30px',
@@ -19,12 +19,16 @@ const ButtonJSS = styled(Button)({
 
 const PaperJSS = styled(Paper)({
     background: 'white',
-    'min-width': 400,
-    'min-height': 500,
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    'flex-direction': 'column',
+    'align-items': 'center'
 });
 
 const TextFieldJSS = styled(TextField)({
     width: 250,
+    'padding-bottom': 15,
     '& label.Mui-focused': {
         color: variables.active,
     },
@@ -43,6 +47,7 @@ const TextFieldJSS = styled(TextField)({
         }
     },
     '&.wrong': {
+        'padding-bottom': 0,
         '& label.Mui-focused': {
             color: 'red',
         },

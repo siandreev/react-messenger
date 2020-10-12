@@ -89,80 +89,82 @@ class RegistrationForm extends React.Component{
     render() {
         const fields = this.state.fields;
         return(
-            <Paper elevation={3}>
             <div className="registration-form">
-                <div className="registration-form__row">
-                    <h2 className="registration-form__header">Sign up</h2>
-                </div>
-                <div className="registration-form__row">
-                    <TextField
-                        placeholder="tag"
-                        error={!fields.tag.isValid}
-                        helperText={!fields.tag.isValid ?
-                            "Tag should only contain letters" : ""}
-                        className={fields.tag.isValid ? "" : "wrong"}
-                        onChange={this.setTag}
-                        InputProps={{
-                            startAdornment: <InputAdornment position="start">@</InputAdornment>,
-                        }}
-                    />
-                </div>
-                <div className="registration-form__row">
-                    <TextField
-                        label="First name"
-                        error={!fields.firstName.isValid}
-                        helperText={!fields.firstName.isValid ?
-                            "First name must be letters only and start with a capital letter" : ""}
-                        className={fields.firstName.isValid ? "" : "wrong"}
-                        onChange={this.setFirstName}
-                    />
-                </div>
-                <div className="registration-form__row">
-                    <TextField
-                        label="Last name"
-                        error={!fields.lastName.isValid}
-                        helperText={!fields.lastName.isValid ?
-                            "Last name must be letters only and start with a capital letter" : ""}
-                        className={fields.lastName.isValid ? "" : "wrong"}
-                        onChange={this.setLastName}
-                    />
-                </div>
-                <div className="registration-form__row">
-                    <TextField
-                        label="Email"
-                        error={!fields.email.isValid}
-                        helperText={!fields.email.isValid ?
-                            "Please enter a valid email" : ""}
-                        className={fields.email.isValid ? "" : "wrong"}
-                        onChange={this.setEmail}
-                    />
-                </div>
-                <div className="registration-form__row">
-                    <TextField
-                        type="password"
-                        label="Password"
-                        error={!fields.password.isValid}
-                        helperText={!fields.password.isValid ?
-                            "Password length must be at least five" : ""}
-                        className={fields.password.isValid ? "" : "wrong"}
-                        onChange={this.setPassword}
-                    />
-                </div>
-                <div className="registration-form__row">
-                     <Button
-                         variant="contained"
-                         onClick={this.submit}
-                     >Sign up
-                     </Button>
-                     <Modal
-                         open={this.state.modal.open}
-                         onClose={this.closeModal}
-                         header={this.state.modal.header}
-                         text={this.state.modal.text}
-                     />
-                </div>
+                <Paper elevation={3}>
+                    <div className="registration-form__header">
+                        <h2>Sign up</h2>
+                    </div>
+                    <div className="registration-form__fields">
+                        <div className="registration-form__row">
+                            <TextField
+                                placeholder="tag"
+                                error={!fields.tag.isValid}
+                                helperText={!fields.tag.isValid ?
+                                    "Tag should only contain letters" : ""}
+                                className={fields.tag.isValid ? "" : "wrong"}
+                                onChange={this.setTag}
+                                InputProps={{
+                                    startAdornment: <InputAdornment position="start">@</InputAdornment>,
+                                }}
+                            />
+                        </div>
+                        <div className="registration-form__row">
+                            <TextField
+                                label="First name"
+                                error={!fields.firstName.isValid}
+                                helperText={!fields.firstName.isValid ?
+                                    "First name must be letters only and start with a capital letter" : ""}
+                                className={fields.firstName.isValid ? "" : "wrong"}
+                                onChange={this.setFirstName}
+                            />
+                        </div>
+                        <div className="registration-form__row">
+                            <TextField
+                                label="Last name"
+                                error={!fields.lastName.isValid}
+                                helperText={!fields.lastName.isValid ?
+                                    "Last name must be letters only and start with a capital letter" : ""}
+                                className={fields.lastName.isValid ? "" : "wrong"}
+                                onChange={this.setLastName}
+                            />
+                        </div>
+                        <div className="registration-form__row">
+                            <TextField
+                                label="Email"
+                                error={!fields.email.isValid}
+                                helperText={!fields.email.isValid ?
+                                    "Please enter a valid email" : ""}
+                                className={fields.email.isValid ? "" : "wrong"}
+                                onChange={this.setEmail}
+                            />
+                        </div>
+                        <div className="registration-form__row">
+                            <TextField
+                                type="password"
+                                label="Password"
+                                error={!fields.password.isValid}
+                                helperText={!fields.password.isValid ?
+                                    "Password length must be at least five" : ""}
+                                className={fields.password.isValid ? "" : "wrong"}
+                                onChange={this.setPassword}
+                            />
+                        </div>
+                    </div>
+                    <div className="registration-form__bottom">
+                         <Button
+                             variant="contained"
+                             onClick={this.submit}
+                         >Sign up
+                         </Button>
+                         <Modal
+                             open={this.state.modal.open}
+                             onClose={this.closeModal}
+                             header={this.state.modal.header}
+                             text={this.state.modal.text}
+                         />
+                    </div>
+                </Paper>
             </div>
-            </Paper>
         )
     }
 }

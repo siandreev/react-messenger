@@ -13,9 +13,9 @@ const ModalJSS = styled(Modal)({
 
 const IconButtonJSS = styled(IconButton)({
     position: 'absolute',
-    left: '93%',
-    top: '-3%',
-    color: variables.secondary
+    right: '5px',
+    top: '5px',
+    color: variables.active
 });
 
 export {ModalJSS as ModalMui, IconButtonJSS as IconButton}
