@@ -15,12 +15,12 @@ html,
 
 .header {
   height: $header-height;
-  background-color: rgba(black, 0.8);
+  background-color: rgba(black, 0.85);
 }
 
 .footer {
   height: 20px;
-  background-color: rgba(black, 0.8);
+  background-color: rgba(black, 0.85);
 }
 
 .main-wrapper {
@@ -34,7 +34,7 @@ html,
     flex-basis: 33.33%;
     flex-grow: 0;
     height: 100%;
-    background-color: $primary;
+    background-color: $secondary;
 
     max-width: 33.33%;
     min-width: 240px;

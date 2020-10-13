@@ -1,10 +1,13 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {ContactsList, MessagesWindow, RegistrationForm, AuthorizationForm} from "components"
+import {ContactsList, MessagesWindow} from "components"
+import {SocketManager, AuthorizationForm, RegistrationForm} from "modules";
+
 import { stack as Menu } from 'react-burger-menu'
 
 import 'styles/burger.scss';
 import 'styles/authorization-panel.scss'
+import 'styles/app.scss';
 
 function App() {
   let contacts = [
@@ -147,26 +150,28 @@ function App() {
                   </div>
               </Route>
               <Route path="/" exact>
-                  <div className="content">
-                      <Menu pageWrapId={"page-wrap"}>
-                          <a id="home" className="menu-item" href="/">Home</a>
-                          <a id="about" className="menu-item" href="/about">About</a>
-                          <a id="contact" className="menu-item" href="/contact">Contact</a>
-                      </Menu>
-                      <main  id="page-wrap" className="content">
-                          <div className="header">
-                          </div>
-                          <div className="main-wrapper">
-                              <div className="main-wrapper__column-s">
-                                  <ContactsList contacts={contacts}/>
+                  <SocketManager>
+                      <div className="content">
+                          <Menu pageWrapId={"page-wrap"}>
+                              <a id="home" className="menu-item" href="/">Home</a>
+                              <a id="about" className="menu-item" href="/about">About</a>
+                              <a id="contact" className="menu-item" href="/contact">Contact</a>
+                          </Menu>
+                          <main  id="page-wrap" className="content">
+                              <div className="header">
                               </div>
-                              <div className="main-wrapper__column">
-                                  <MessagesWindow messages={messages} person="Луи Армстронг" />
+                              <div className="main-wrapper">
+                                  <div className="main-wrapper__column-s">
+                                      <ContactsList contacts={contacts}/>
+                                  </div>
+                                  <div className="main-wrapper__column">
+                                      <MessagesWindow messages={messages} person="Луи Армстронг" />
+                                  </div>
                               </div>
-                          </div>
-                          <div className="footer"></div>
-                      </main>
-                  </div>
+                              <div className="footer"></div>
+                          </main>
+                      </div>
+                  </SocketManager>
               </Route>
           </Switch>
       </Router>

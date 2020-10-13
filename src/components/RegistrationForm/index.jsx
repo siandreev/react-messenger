@@ -169,7 +169,7 @@ class RegistrationForm extends React.Component{
     }
 }
 
-export default () => {
+export default ({signup}) => {
     const history = useHistory();
     const submit = function() {
         const fields = { ...this.state.fields }
@@ -183,7 +183,27 @@ export default () => {
         }
 
         if (!incorrect.length) {
-            history.push("/");
+            const data = {
+                tag: `@${this.state.fields.tag.value}`,
+                firstName: this.state.fields.firstName.value,
+                lastName: this.state.fields.lastName.value,
+                email: this.state.fields.email.value,
+                password: this.state.fields.password.value
+            }
+            signup(data).then(isAuthorized => {
+                if (isAuthorized) {
+                    history.push("/");
+                } else {
+                    this.setState({
+                        fields,
+                        modal: {
+                            open: true,
+                            header: "This user already exists",
+                            text: "Email and tag must be unique."
+                        }
+                    })
+                }
+            });
         } else {
             this.setState({
                 fields,

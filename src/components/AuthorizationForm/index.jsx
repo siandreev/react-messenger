@@ -108,7 +108,7 @@ class AuthorizationForm extends React.Component{
     }
 }
 
-export default () => {
+export default ({login}) => {
     const history = useHistory();
     const submit = function() {
         const fields = { ...this.state.fields }
@@ -122,7 +122,24 @@ export default () => {
         }
 
         if (!incorrect.length) {
-            history.push("/");
+            const data = {
+                email: this.state.fields.email.value,
+                password: this.state.fields.password.value
+            }
+            login(data).then(isAuthorized => {
+                if (isAuthorized) {
+                    history.push("/");
+                } else {
+                    this.setState({
+                        fields,
+                        modal: {
+                            open: true,
+                            header: "Incorrect email or password",
+                            text: "There is no user with such data"
+                        }
+                    })
+                }
+            });
         } else {
             this.setState({
                 fields,
