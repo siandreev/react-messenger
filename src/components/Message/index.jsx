@@ -5,8 +5,9 @@ import "./Message.scss"
 class Message extends React.Component{
     render() {
         const message = this.props.message;
-        const date = new Date(Number(message.time));
-        const time = date.getHours() + ":" + date.getMinutes();
+        const date = new Date(message.date);
+        const minutes = date.getMinutes();
+        const time = date.getHours() + ":" + (minutes < 10 ? `0${minutes}` : minutes)
         const positionClass = message.isIncoming ? "message_incoming" : "message_outgoing";
         return(
             <li className="message">

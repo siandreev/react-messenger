@@ -10,28 +10,58 @@ class MessagesList extends React.Component {
     constructor(props) {
         super(props);
         this.scrollBar = React.createRef();
-        this.state = {
-            person: props.person,
-            messages: props.messages
-        }
     }
 
     componentDidMount() {
-        this.scrollBar.current.scrollToBottom();
+        if (this.scrollBar.current) {
+            this.scrollBar.current.scrollToBottom();
+        }
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.scrollBar.current) {
+            this.scrollBar.current.scrollToBottom();
+        }
     }
 
     render() {
-        return(
-            <div className="messages-list">
-                <Scrollbar style={{"height": "100%"}} ref={this.scrollBar}>
-                    <div>
-                        <ul>
-                            {this.state.messages.map(message => <Message key={message.id} message={message}/>)}
-                        </ul>
+        if (this.props.messages) {
+            if (this.props.messages.length) {
+                return (
+                    <div className="messages-list">
+                        <Scrollbar
+                            style={{"height": "100%"}}
+                            ref={this.scrollBar}>
+                            <div className="messages-list__wrapper">
+                                <ul>
+                                    {this.props.messages.slice().reverse().map(message =>
+                                        <Message
+                                            key={message._id}
+                                            message={{
+                                                text: message.text,
+                                                date: message.date,
+                                                isIncoming: this.props.person.tag === message.senderTag
+                                            }}
+                                        />)}
+                                </ul>;
+                            </div>
+                        </Scrollbar>
                     </div>
-                </Scrollbar>
-            </div>
-        )
+                )
+            } else {
+                return (
+                    <div>No any messages yet</div>
+                );
+            }
+        } else {
+            return (
+                <div className="notification__container">
+                    <div className="notification__wrapper">
+                        Select chat to start messaging
+                    </div>
+                </div>
+            );
+        }
     }
 }
 

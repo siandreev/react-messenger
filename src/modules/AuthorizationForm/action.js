@@ -3,8 +3,8 @@ import authApi from "core/axios/api"
 const authorizationFormActions = {
     setAuthorizationStatus(isAuthorized) {
         return {
-          type: "LOGIN:SET_AUTH_STATUS",
-            isAuthorized
+          type: "AUTH:SET_AUTH_STATUS",
+          isAuthorized
         }
     },
     fetchLogin: data => async dispatch => {

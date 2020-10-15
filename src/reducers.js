@@ -1,6 +1,5 @@
 import {combineReducers} from "redux";
-import socket from "./modules/SocketManager/reducer";
-import authorization from "./modules/AuthorizationForm/reducer";
-import register from "./modules/RegistrationForm/reducer";
+import socket from "./modules/Window/reducer";
+import auth from "./modules/App/reducer";
 
-export default combineReducers({socket, authorization, register});
+export default combineReducers({socket, auth});

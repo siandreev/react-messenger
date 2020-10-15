@@ -3,7 +3,7 @@ import authApi from "core/axios/api"
 const registrationFormActions = {
     setAuthorizationStatus(isAuthorized) {
         return {
-            type: "REGISTER:SET_AUTH_STATUS",
+            type: "AUTH:SET_AUTH_STATUS",
             isAuthorized
         }
     },

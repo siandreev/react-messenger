@@ -19,7 +19,17 @@ class ContactsList extends React.Component {
         this.setState({contacts: filtered})
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (JSON.stringify(this.props.contacts) !== JSON.stringify(this.state.contacts)) {
+            this.setState({
+                contacts: this.props.contacts
+            })
+        }
+
+    }
+
     render() {
+        const contacts = this.props.selfInfo ? this.state.contacts : [];
         return (
             <div className="contacts-list">
                 <SearchBar filter={this.filterContacts}/>
@@ -27,7 +37,19 @@ class ContactsList extends React.Component {
                     <div>
                     <ul className="contacts-list__ul">
                         {
-                            this.state.contacts.map((item, index) => <ListItem key={index} person={item}/>)
+                            contacts.map(item =>
+                                <ListItem
+                                    key={item._id}
+                                    person={{
+                                        isIncoming: this.props.selfInfo.tag === item.receiverTag,
+                                        tag: item.userInfo.tag,
+                                        firstName: item.userInfo.firstName,
+                                        lastName: item.userInfo.lastName,
+                                        message: item.text,
+                                        img: "https://24smi.org/public/media/resize/800x-/2017/4/26/05_SUGf1Kr.jpg"
+                                     }}
+                                    clickHandler={this.props.onSelect}
+                                />)
                         }
                     </ul>
                     </div>
