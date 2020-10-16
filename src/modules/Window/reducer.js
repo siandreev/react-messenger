@@ -2,10 +2,10 @@ export default function(state = {messages: {}}, action) {
     switch (action.type) {
         case "SOCKET:APPEND_MESSAGE": {
             const messagesObject = Object.assign({}, state.messages);
-            if (!messagesObject[action.message.senderTag]) {
-                messagesObject[action.message.senderTag] = [];
+            if (!messagesObject[action.partnerTag]) {
+                messagesObject[action.partnerTag] = [];
             }
-            messagesObject[action.message.senderTag].unshift(action.message);
+            messagesObject[action.partnerTag].unshift(action.message);
             return Object.assign({}, state,{messages: messagesObject});
         }
         case "SOCKET:SET_DIALOGS_LIST":

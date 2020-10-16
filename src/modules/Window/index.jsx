@@ -84,11 +84,15 @@ class WindowModule extends React.Component {
     }
 
     onSelect(tag) {
-        console.log("select " + tag);
         this.props.fetchMessages(this.state.wsp, tag)
         this.setState({
             selectedDialog: tag
         })
+    }
+
+    onSend(text) {
+        console.log(text);
+        this.props.sendMessageToUser(this.state.wsp, this.state.selectedDialog, text);
     }
 
     render() {
@@ -107,6 +111,7 @@ class WindowModule extends React.Component {
             return (
                 <Window
                     onSelect={this.onSelect.bind(this)}
+                    onSend={this.onSend.bind(this)}
                     selfInfo={this.props.selfInfo}
                     messages={messages}
                     person={person}

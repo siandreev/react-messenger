@@ -7,11 +7,14 @@ import "./MessageInput.scss"
 class MessagesInput extends React.Component {
     constructor(props) {
         super(props);
+        this.textBox = React.createRef();
         this.state = {
             typedText: "",
             isEmojiMenuOpen: false
         }
 
+        this.onTextChange = this.onTextChange.bind(this);
+        this.onSend = this.onSend.bind(this);
         this.insertEmoji = this.insertEmoji.bind(this);
         this.toggleEmojiMenu = this.toggleEmojiMenu.bind(this);
 
@@ -38,6 +41,20 @@ class MessagesInput extends React.Component {
         document.querySelector(".messages-input__textbox").textContent += e.native;
     }
 
+    onTextChange(event) {
+        this.setState({
+            typedText: event.currentTarget.textContent
+        })
+    }
+
+    onSend() {
+        this.props.onSend(this.state.typedText);
+        this.textBox.current.textContent = "";
+        this.setState({
+            typedText: ""
+        })
+    }
+
     render() {
         return(
             <div className="messages-input">
@@ -45,8 +62,14 @@ class MessagesInput extends React.Component {
                     <i className="far fa-file-alt" />
                 </div>
                 <div className="messages-input__field">
-                    <div role="textbox" className="messages-input__textbox" contentEditable
-                          data-placeholder="Введите сообщение..." />
+                    <div
+                        ref={this.textBox}
+                        role="textbox"
+                        className="messages-input__textbox"
+                        contentEditable
+                        data-placeholder="Введите сообщение..."
+                        onInput={this.onTextChange}
+                    />
                     <div className="messages-input__icon-wrapper">
                         <i className="far fa-grin" onClick={this.toggleEmojiMenu} />
                     </div>
@@ -65,7 +88,7 @@ class MessagesInput extends React.Component {
                     </div>
                 </div>
                 <div className="messages-input__send">
-                    <i className="far fa-paper-plane" />
+                    <i className="far fa-paper-plane" onClick={this.onSend}/>
                 </div>
             </div>
         )

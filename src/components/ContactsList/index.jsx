@@ -9,7 +9,8 @@ import "./ContactsList.scss"
 class ContactsList extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {contacts: props.contacts};
+        this.onClick = this.onClick.bind(this);
+        this.state = {contacts: props.contacts, selectedDialogTag: undefined};
         this.filterContacts = this.filterContacts.bind(this);
     }
 
@@ -26,6 +27,13 @@ class ContactsList extends React.Component {
             })
         }
 
+    }
+
+    onClick(tag) {
+        this.setState({
+            selectedDialogTag: tag
+        })
+        this.props.onSelect(tag);
     }
 
     render() {
@@ -48,7 +56,8 @@ class ContactsList extends React.Component {
                                         message: item.text,
                                         img: "https://24smi.org/public/media/resize/800x-/2017/4/26/05_SUGf1Kr.jpg"
                                      }}
-                                    clickHandler={this.props.onSelect}
+                                    clickHandler={this.onClick}
+                                    isActive={this.state.selectedDialogTag === item.userInfo.tag}
                                 />)
                         }
                     </ul>

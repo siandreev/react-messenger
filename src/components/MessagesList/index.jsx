@@ -43,7 +43,7 @@ class MessagesList extends React.Component {
                                                 isIncoming: this.props.person.tag === message.senderTag
                                             }}
                                         />)}
-                                </ul>;
+                                </ul>
                             </div>
                         </Scrollbar>
                     </div>

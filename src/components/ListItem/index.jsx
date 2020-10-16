@@ -2,10 +2,11 @@ import React from "react";
 
 import "./ListItem.scss"
 
-function ListItem({person, clickHandler}) {
+function ListItem({person, clickHandler, isActive}) {
     const message = person.isIncoming ? person.message : `You: ${person.message}`;
+    const active = isActive ? " list-item_active" : "";
     return (
-        <li className="list-item" onClick={() => clickHandler(person.tag)}>
+        <li className={"list-item" + active} onClick={() => clickHandler(person.tag)}>
             <div className="list-item__img">
                 <img src={person.img} alt=""/>
             </div>

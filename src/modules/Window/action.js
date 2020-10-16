@@ -1,14 +1,15 @@
 const windowActions = {
-    appendMessage(message) {
+    appendMessage(message, partnerTag) {
         return {
             type: "SOCKET:APPEND_MESSAGE",
-            message
+            message,
+            partnerTag
         }
     },
     receiveMessage: (message, wsp) => async dispatch => {
         const dialogs = await wsp.sendRequest({jsonrpc: "2.0", method: "getDialogsList"});
         dispatch(windowActions.setDialogsList(dialogs.result));
-        dispatch(windowActions.appendMessage(message));
+        dispatch(windowActions.appendMessage(message, message.senderTag));
     },
     setDialogsList(dialogsList) {
         return {
@@ -36,6 +37,14 @@ const windowActions = {
     fetchMessages: (wsp, tag) => async dispatch => {
         const response = await wsp.sendRequest({jsonrpc: "2.0", method: "getMessagesWithUser", params: [tag]});
         dispatch(windowActions.setMessagesWithUser(tag, response.result));
+    },
+    sendMessageToUser: (wsp, tag, text) => async dispatch => {
+        const response = await wsp.sendRequest({jsonrpc: "2.0", method: "sendMessageToUser", params: [tag, text]});
+        if (response?.result?.status === "OK") {
+            await windowActions.fetchDialogsList(wsp)(dispatch);
+
+            dispatch(windowActions.appendMessage(response.result.message, tag));
+        }
     }
 }
 

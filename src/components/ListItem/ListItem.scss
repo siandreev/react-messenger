@@ -52,7 +52,15 @@ $pic-size: 40px;
   }
 
   &:hover {
-    background-color: rgba(grey, 0.7);
+    background-color: rgba(grey, 0.3);
+  }
+
+  &_active {
+    background-color: $active;
+
+    &:hover {
+      background-color: $active;
+    }
   }
 }
 

@@ -20,10 +20,16 @@ class Window extends React.Component {
                     <div className="window__header"></div>
                     <div className="window__main-wrapper">
                         <div className="window__column-s">
-                            <ContactsList onSelect={this.props.onSelect} selfInfo={this.props.selfInfo} contacts={this.props.dialogs}/>
+                            <ContactsList
+                                onSelect={this.props.onSelect}
+                                selfInfo={this.props.selfInfo}
+                                contacts={this.props.dialogs}/>
                         </div>
                         <div className="window__column">
-                            <MessagesWindow messages={this.props.messages} person={this.props.person} />
+                            <MessagesWindow
+                                onSend={this.props.onSend}
+                                messages={this.props.messages}
+                                person={this.props.person}/>
                         </div>
                     </div>
                     <div className="window__footer"></div>
