@@ -40,7 +40,8 @@ class MessagesList extends React.Component {
                                             message={{
                                                 text: message.text,
                                                 date: message.date,
-                                                isIncoming: this.props.person.tag === message.senderTag
+                                                isIncoming: this.props.person.tag === message.senderTag,
+                                                isRead: message.isRead
                                             }}
                                         />)}
                                 </ul>

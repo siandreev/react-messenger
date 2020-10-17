@@ -17,6 +17,18 @@ export default function(state = {messages: {}}, action) {
             messagesObject[action.tag] = action.messages;
             return Object.assign({}, state, {messages: messagesObject});
         }
+        case "SOCKET:MARK_AS_READ": {
+            const messagesObject = Object.assign({}, state.messages);
+            if (messagesObject[action.tag]) {
+                const role = action.amIReceiver ? "senderTag" : "receiverTag";
+                messagesObject[action.tag].forEach(message => {
+                    if (message[role] === action.tag) {
+                        message.isRead = true;
+                    }
+                });
+            }
+            return Object.assign({}, state, {messages: messagesObject});
+        }
         default:
             return state;
     }

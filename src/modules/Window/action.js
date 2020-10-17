@@ -34,16 +34,33 @@ const windowActions = {
             messages
         }
     },
-    fetchMessages: (wsp, tag) => async dispatch => {
-        const response = await wsp.sendRequest({jsonrpc: "2.0", method: "getMessagesWithUser", params: [tag]});
-        dispatch(windowActions.setMessagesWithUser(tag, response.result));
+    fetchAndMarkAsReadMessages: (wsp, tag) => async dispatch => {
+        const messagesObject = await wsp.sendRequest({jsonrpc: "2.0", method: "getMessagesWithUser", params: [tag]});
+        dispatch(windowActions.setMessagesWithUser(tag, messagesObject.result));
+        const markResponse = await wsp.sendRequest({jsonrpc: "2.0", method: "markMessagesWithUserAsRead", params: [tag]});
+        if (markResponse?.result?.status === "OK") {
+            dispatch(windowActions.setReadStatus(tag, true));
+        }
     },
     sendMessageToUser: (wsp, tag, text) => async dispatch => {
         const response = await wsp.sendRequest({jsonrpc: "2.0", method: "sendMessageToUser", params: [tag, text]});
         if (response?.result?.status === "OK") {
             await windowActions.fetchDialogsList(wsp)(dispatch);
-
             dispatch(windowActions.appendMessage(response.result.message, tag));
+        }
+        return
+    },
+    setReadStatus(tag, amIReceiver) {
+        return {
+            type: "SOCKET:MARK_AS_READ",
+            tag,
+            amIReceiver
+        }
+    },
+    markMessagesWithUserAsRead: (wsp, tag) => async dispatch => {
+        const response = await wsp.sendRequest({jsonrpc: "2.0", method: "markMessagesWithUserAsRead", params: [tag]});
+        if (response?.result?.status === "OK") {
+            dispatch(windowActions.setReadStatus(tag, true));
         }
     }
 }

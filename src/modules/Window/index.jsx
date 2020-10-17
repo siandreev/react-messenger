@@ -18,7 +18,8 @@ class WindowModule extends React.Component {
 
         this.state = {
             authorized: undefined,
-            wsp
+            wsp,
+            waiting: {}
 
         }
     }
@@ -66,8 +67,26 @@ class WindowModule extends React.Component {
         const message = JSON.parse(data);
         switch (message.code) {
             case 3001:
-                this.props.receiveMessage(message.body, this.state.wsp)
+                this.props.receiveMessage(message.body, this.state.wsp);
+                if (this.state.selectedDialog === message.body.senderTag) {
+                    this.props.markMessagesWithUserAsRead(this.state.wsp, message.body.senderTag);
+                }
                 break;
+            case 3300: {
+                let count = 0;
+                const waitAndMark = (message) => {
+                    count ++;
+                    if (this.state.waiting[message.body.receiverTag] && count < 10) {
+                        setTimeout(() => {
+                            waitAndMark(message);
+                        }, 1000)
+                    } else {
+                        this.props.setReadStatus(message.body.receiverTag, false);
+                    }
+                }
+                waitAndMark(message);
+            }
+                 break;
             default:
         }
     }
@@ -84,15 +103,26 @@ class WindowModule extends React.Component {
     }
 
     onSelect(tag) {
-        this.props.fetchMessages(this.state.wsp, tag)
+        this.props.fetchAndMarkAsReadMessages(this.state.wsp, tag);
         this.setState({
             selectedDialog: tag
-        })
+        });
     }
 
     onSend(text) {
-        console.log(text);
-        this.props.sendMessageToUser(this.state.wsp, this.state.selectedDialog, text);
+        const receiverTag = this.state.selectedDialog;
+        this.setState(state => {
+            const waiting = state.waiting;
+            waiting[receiverTag] = true;
+            return { waiting }
+        })
+        this.props.sendMessageToUser(this.state.wsp, receiverTag, text).then(() => {
+            this.setState(state => {
+                const waiting = state.waiting;
+                waiting[receiverTag] = false;
+                return { waiting }
+            })
+        });
     }
 
     render() {

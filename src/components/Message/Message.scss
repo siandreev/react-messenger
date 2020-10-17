@@ -13,6 +13,10 @@
     border-radius: 30px;
 
     overflow: hidden;
+
+    &_unread {
+      background: linear-gradient(90deg, rgba(50,50,50,1) 40%, rgba(1,183,162,1) 100%);
+    }
   }
 
   &__content {
@@ -20,6 +24,8 @@
   }
 
   &__text {
+    word-break: break-all;
+    word-wrap: break-word;
     color: rgba(white, 0.9);
     line-height: 16px;
     font-size: 16px;

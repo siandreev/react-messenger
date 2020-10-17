@@ -21,24 +21,17 @@ class MessagesInput extends React.Component {
     }
 
     toggleEmojiMenu() {
-        this.setState(function(prevState, props) {
-            if (prevState.isEmojiMenuOpen) {
-                document.querySelector("#emojiMenu").firstElementChild.style.display = "none";
-                return {
-                    isEmojiMenuOpen: false
-                };
-            } else {
-                document.querySelector("#emojiMenu").firstElementChild.style.display = "inline-block";
-                return {
-                    isEmojiMenuOpen: true
-                };
-            }
-
+        this.setState(function(prevState) {
+            return {isEmojiMenuOpen: !prevState.isEmojiMenuOpen};
         });
     }
 
     insertEmoji(e) {
-        document.querySelector(".messages-input__textbox").textContent += e.native;
+        const updatedText = this.state.typedText + e.native;
+        this.textBox.current.textContent = updatedText;
+        this.setState({
+            typedText:  updatedText
+        })
     }
 
     onTextChange(event) {
@@ -56,6 +49,23 @@ class MessagesInput extends React.Component {
     }
 
     render() {
+        let emoji;
+        let emojiIconClass = "";
+        if (this.state.isEmojiMenuOpen) {
+            emojiIconClass = " messages-input__emoji_active";
+            emoji = (
+                <Picker theme="dark"
+                    title=""
+                    style={
+                        {
+                            position: 'absolute',
+                            bottom: '25px',
+                            right: '20px'
+                        }
+                    }
+                    onSelect={this.insertEmoji}
+                />);
+        }
         return(
             <div className="messages-input">
                 <div className="messages-input__attach-file">
@@ -70,21 +80,15 @@ class MessagesInput extends React.Component {
                         data-placeholder="Введите сообщение..."
                         onInput={this.onTextChange}
                     />
-                    <div className="messages-input__icon-wrapper">
-                        <i className="far fa-grin" onClick={this.toggleEmojiMenu} />
+                    <div
+                        className="messages-input__icon-wrapper"
+                        onMouseEnter={this.toggleEmojiMenu}
+                        onMouseLeave={this.toggleEmojiMenu}
+                    >
+                        <i className={"far fa-grin messages-input__emoji" + emojiIconClass}/>
                     </div>
-                    <div id="emojiMenu">
-                        <Picker theme="dark"
-                                title=""
-                                style={
-                                    {
-                                        position: 'absolute',
-                                        bottom: '25px',
-                                        right: '20px',
-                                        display: 'none'}
-                                }
-                                onSelect={this.insertEmoji}
-                        />
+                    <div id="emojiMenu"  onMouseLeave={this.toggleEmojiMenu} onMouseEnter={this.toggleEmojiMenu}>
+                        {emoji}
                     </div>
                 </div>
                 <div className="messages-input__send">
