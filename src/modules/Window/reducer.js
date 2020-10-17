@@ -19,6 +19,7 @@ export default function(state = {messages: {}}, action) {
         }
         case "SOCKET:MARK_AS_READ": {
             const messagesObject = Object.assign({}, state.messages);
+            console.log("g");
             if (messagesObject[action.tag]) {
                 const role = action.amIReceiver ? "senderTag" : "receiverTag";
                 messagesObject[action.tag].forEach(message => {
@@ -28,6 +29,24 @@ export default function(state = {messages: {}}, action) {
                 });
             }
             return Object.assign({}, state, {messages: messagesObject});
+        }
+        case "SOCKET:SET_ONLINE_STATUS_TO_CONTACT": {
+            const dialogs = state.dialogs.map(dialog => {
+                if (dialog.userInfo.tag === action.tag) {
+                    dialog.userInfo.isOnline = true;
+                }
+                return JSON.parse(JSON.stringify(dialog));
+            })
+            return Object.assign({}, state, {dialogs});
+        }
+        case "SOCKET:SET_OFFLINE_STATUS_TO_CONTACT": {
+            const dialogs = state.dialogs.map(dialog => {
+                if (dialog.userInfo.tag === action.tag) {
+                    dialog.userInfo.isOnline = false;
+                }
+                return JSON.parse(JSON.stringify(dialog));
+            })
+            return Object.assign({}, state, {dialogs});
         }
         default:
             return state;

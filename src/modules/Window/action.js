@@ -62,6 +62,18 @@ const windowActions = {
         if (response?.result?.status === "OK") {
             dispatch(windowActions.setReadStatus(tag, true));
         }
+    },
+    setOnlineStatusToContact(tag) {
+        return {
+            type: "SOCKET:SET_ONLINE_STATUS_TO_CONTACT",
+            tag
+        }
+    },
+    setOfflineStatusToContact(tag) {
+        return {
+            type: "SOCKET:SET_OFFLINE_STATUS_TO_CONTACT",
+            tag
+        }
     }
 }
 

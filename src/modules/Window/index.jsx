@@ -87,6 +87,12 @@ class WindowModule extends React.Component {
                 waitAndMark(message);
             }
                  break;
+            case 3101:
+                this.props.setOnlineStatusToContact(message.body.loggedInUserTag);
+                break;
+            case 3100:
+                this.props.setOfflineStatusToContact(message.body.loggedOutUserTag);
+                break;
             default:
         }
     }

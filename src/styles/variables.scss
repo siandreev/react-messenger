@@ -9,6 +9,7 @@ $active: #00b5a0;
 $dark-active: #01886e;
 $lightActive: #14ffec;
 $white: #eeeeee;
+$hovered: #4a4a4a;
 
 :export {
   primary: $primary;
@@ -16,4 +17,5 @@ $white: #eeeeee;
   active: $active;
   lightActive: $lightActive;
   white: $white;
+  hovered: $hovered;
 }

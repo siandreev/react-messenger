@@ -54,6 +54,7 @@ class ContactsList extends React.Component {
                                         firstName: item.userInfo.firstName,
                                         lastName: item.userInfo.lastName,
                                         message: item.text,
+                                        isOnline: item.userInfo.isOnline,
                                         img: "https://24smi.org/public/media/resize/800x-/2017/4/26/05_SUGf1Kr.jpg"
                                      }}
                                     clickHandler={this.onClick}
