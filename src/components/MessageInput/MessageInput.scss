@@ -59,6 +59,10 @@
       font-family: $roboto;
       font-size: 14px;
     }
+
+    &_invalid {
+      animation: shake .5s linear;
+    }
   }
 
   &__send {
@@ -78,5 +82,23 @@
 
   &__emoji_active {
     color: $active;
+  }
+}
+
+@keyframes shake {
+  8%, 41% {
+    transform: translateX(-10px);
+  }
+  25%, 58% {
+    transform: translateX(10px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  92% {
+    transform: translateX(5px);
+  }
+  0%, 100% {
+    transform: translateX(0);
   }
 }
