@@ -1,0 +1,96 @@
+@import "src/styles/variables";
+
+.menu {
+  height: 100%;
+  position: relative;
+
+
+  &:focus {
+    outline: none;
+  }
+  &__img {
+    min-height: 200px;
+    min-width: 100%;
+    background-size: cover;
+    border: none;
+    outline: none;
+
+    position: relative;
+  }
+
+  &__img:focus {
+    outline: none;
+  }
+
+  &__personal-data-wrapper {
+    position: absolute;
+    bottom: 0;
+
+    background-color: rgba($primary, 0.8);
+    width: 100%;
+    height: 60px;
+    padding-left: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: end;
+  }
+
+  &__name {
+    color: $white;
+    font-family: $roboto sans-serif;
+    font-size: 18px;
+  }
+
+  &__tag {
+    color: $white;
+    font-family: $roboto sans-serif;
+    font-size: 14px;
+  }
+
+  &__options-list {
+    padding-top: 10px;
+    width: 100%;
+  }
+
+  &__exit-wrapper {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+}
+
+.option {
+  width: 100%;
+  cursor: pointer;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+
+  &:hover {
+    background-color: $secondary;
+  }
+
+  &__icon-wrapper {
+    width: 50px;
+    float: left;
+    font-size: 16px;
+
+    color: $hovered;
+  }
+
+  &__text-wrapper {
+    color: rgba($white, 0.7);
+    font-family: $roboto sans-serif;
+    font-size: 14px;
+
+    &_danger {
+      color: $danger;
+    }
+  }
+}

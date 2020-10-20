@@ -1,6 +1,6 @@
 import React from "react";
 
-import {stack as Menu} from "react-burger-menu";
+import Menu from "../Menu";
 import {ContactsList, MessagesWindow} from "../index";
 
 import "./Window.scss"
@@ -11,11 +11,7 @@ class Window extends React.Component {
     render() {
         return(
             <div className="window__content">
-                <Menu pageWrapId={"page-wrap"}>
-                    <a id="home" className="menu-item" href="/">Home</a>
-                    <a id="about" className="menu-item" href="/about">About</a>
-                    <a id="contact" className="menu-item" href="/contact">Contact</a>
-                </Menu>
+                <Menu />
                 <main  id="page-wrap" className="window__content">
                     <div className="window__header"></div>
                     <div className="window__main-wrapper">
