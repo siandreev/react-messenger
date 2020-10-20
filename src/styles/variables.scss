@@ -9,6 +9,7 @@ $active: #00b5a0;
 $dark-active: #01886e;
 $lightActive: #14ffec;
 $white: #eeeeee;
+$smoked: rgba($white, 0.7);
 $hovered: #4a4a4a;
 $danger: #a50a20;
 
@@ -18,5 +19,6 @@ $danger: #a50a20;
   active: $active;
   lightActive: $lightActive;
   white: $white;
+  smoked: $smoked;
   hovered: $hovered;
 }

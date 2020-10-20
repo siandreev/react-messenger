@@ -15,6 +15,8 @@ const IconButtonJSS = styled(IconButton)({
     position: 'absolute',
     right: '5px',
     top: '5px',
+    width: '40px',
+    height: '40px',
     color: variables.active
 });
 

@@ -1,0 +1,43 @@
+@import "src/styles/variables";
+
+.add-contact {
+  &__container {
+    position: relative;
+    width: 400px;
+    height: 90%;
+
+    background-color: $primary;
+    border-radius: 10px;
+    border-color: $primary;
+    outline: none;
+  }
+
+  &__wrapper {
+    height: calc(100% - 40px);
+  }
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &__search-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  &__header {
+    color: $smoked;
+    font-family: $roboto sans-serif;
+    padding-left: 20px;
+  }
+
+  &__head {
+    height: 110px;
+  }
+
+  &__contacts {
+    height: calc(100% - 120px);
+    background-color: $secondary;
+  }
+}

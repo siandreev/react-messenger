@@ -2,12 +2,48 @@ import React from "react";
 import {slide as Burger} from "react-burger-menu";
 import ButtonBase from '@material-ui/core/ButtonBase';
 
+import AddContact from "./AddContact"
+
 import "./Menu.scss";
 
 class Menu extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            modals: {
+                addContact: false,
+                settings: false,
+                about: false,
+                exit: false
+            }
+        }
+
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    closeModal() {
+        this.setState({
+            modals: {
+                addContact: false,
+                settings: false,
+                about: false,
+                exit: false
+            }
+        });
+    }
+
+    openModal(modalName) {
+        const modals = {
+            addContact: false,
+            settings: false,
+            about: false,
+            exit: false
+        };
+
+        modals[modalName] = true;
+        this.setState({ modals });
     }
 
     render() {
@@ -22,7 +58,7 @@ class Menu extends React.Component {
                        </div>
                     </div>
                     <div className="menu__options-list">
-                        <ButtonBase style={{width: "100%"}}>
+                        <ButtonBase style={{width: "100%"}} onClick={() => this.openModal("addContact")}>
                             <div className="option">
                                 <span className="option__icon-wrapper">
                                     <i className="far fa-address-card" />
@@ -30,6 +66,7 @@ class Menu extends React.Component {
                                 <span className="option__text-wrapper">Add contact</span>
                             </div>
                         </ButtonBase>
+                        <AddContact open={this.state.modals.addContact} onClose={this.closeModal} />
                         <ButtonBase style={{width: "100%"}}>
                             <div className="option">
                                     <span className="option__icon-wrapper">
