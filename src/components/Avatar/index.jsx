@@ -5,14 +5,14 @@ import {withStyles} from "@material-ui/core/styles";
 
 import variables from 'styles/variables.scss'
 
-function Avatar({url, status, isOnline}) {
+function Avatar({url, status, isOnline, color, hoverColor}) {
     let dotColor = variables.active;
-    let dotBorderColor = variables.secondary;
+    let dotBorderColor = variables[color];
     if (status === "selected") {
         dotColor = variables.secondary;
         dotBorderColor = variables.active;
     } else if(status === "hovered") {
-        dotBorderColor = variables.hovered;
+        dotBorderColor = variables[hoverColor];
     }
     const BadgeJSS = withStyles(() => ({
         badge: {

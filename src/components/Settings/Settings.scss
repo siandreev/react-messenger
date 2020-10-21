@@ -1,0 +1,88 @@
+@import "src/styles/variables";
+
+.settings {
+  position: relative;
+  &__container {
+    position: relative;
+    width: 400px;
+    height: 550px;
+
+    background-color: $primary;
+    border-radius: 10px;
+    border-color: $primary;
+    outline: none;
+  }
+
+  &__wrapper {
+    height: calc(100% - 40px);
+  }
+
+  &__icon {
+    font-size: 20px;
+  }
+
+  &__header {
+    color: $smoked;
+    font-family: $roboto sans-serif;
+    padding-left: 20px;
+  }
+
+  &__img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 180px;
+    margin-bottom: 30px;
+  }
+
+  &__img {
+    height: 140px;
+    width: 140px;
+    position: relative;
+    border-radius: 50%;
+    background-size: cover;
+    overflow: hidden;
+  }
+
+  &__img:hover div {
+    bottom: 0;
+  }
+
+  &__hint {
+    position: absolute;
+    bottom: -50px;
+    height: 50px;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba($primary, 0.8);
+    transition: bottom .5s;
+  }
+
+  &__upload-icon {
+    color: $smoked;
+    font-weight: bold;
+    font-size: 18px;
+  }
+
+  &__text-fields-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  &__buttons-wrapper {
+    position: absolute;
+    bottom: 30px;
+    padding: 0 75px;
+    width: calc(100% - 150px);
+    display: flex;
+    justify-content: space-between;
+  }
+}

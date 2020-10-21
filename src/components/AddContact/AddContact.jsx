@@ -8,6 +8,12 @@ const TextFieldJSS = styled(TextField)({
     '& .MuiTypography-colorTextSecondary': {
       color: variables.smoked
     },
+    '& .Mui-focused .MuiTypography-colorTextSecondary': {
+        color: variables.active,
+    },
+    '& .Mui-focused input': {
+        color: variables.active,
+    },
     '& .MuiInput-underline:hover:before': {
         borderBottomColor: variables.white
     },

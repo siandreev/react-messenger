@@ -3,10 +3,12 @@
 
 $header-height: 50px;
 $roboto: 'Roboto', seif;
+$dark: #161616;
 $primary: #212121;
 $secondary: #323232;
 $active: #00b5a0;
 $dark-active: #01886e;
+$disabled-active: rgba($active, 0.25);
 $lightActive: #14ffec;
 $white: #eeeeee;
 $smoked: rgba($white, 0.7);
@@ -17,8 +19,11 @@ $danger: #a50a20;
   primary: $primary;
   secondary: $secondary;
   active: $active;
+  darkActive: $dark-active;
+  disabledActive: $disabled-active;
   lightActive: $lightActive;
   white: $white;
   smoked: $smoked;
   hovered: $hovered;
+  dark: $dark;
 }

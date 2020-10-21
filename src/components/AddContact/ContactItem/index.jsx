@@ -42,7 +42,12 @@ class ContactItem extends React.Component {
             >
                 <ButtonBase style={{width: "100%"}} onClick={this.onSelect}>
                     <div className="contact-item__img">
-                        <Avatar url={person.img} status={this.state.status} isOnline={person.isOnline}/>
+                        <Avatar
+                            url={person.img}
+                            status={this.state.status}
+                            isOnline={person.isOnline}
+                            color="dark"
+                            hoverColor="secondary"/>
                     </div>
                     <div className="contact-item__text-data">
                         <div className="contact-item__name"><span>{person.firstName + " " + person.lastName}</span></div>

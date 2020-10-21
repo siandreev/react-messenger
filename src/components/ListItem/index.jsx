@@ -45,7 +45,12 @@ class ListItem extends React.Component {
                 onMouseLeave={this.onMouseLeave}
             >
                 <div className="list-item__img">
-                    <Avatar url={person.img} status={avatarStatus} isOnline={person.isOnline}/>
+                    <Avatar
+                        url={person.img}
+                        status={avatarStatus}
+                        isOnline={person.isOnline}
+                        color="secondary"
+                        hoverColor="hovered"/>
                 </div>
                 <div className="list-item__text-data">
                     <div className="list-item__name"><span>{person.firstName + " " + person.lastName}</span></div>
