@@ -51,7 +51,11 @@ class MessagesList extends React.Component {
                 )
             } else {
                 return (
-                    <div>No any messages yet</div>
+                    <div className="notification__container">
+                        <div className="notification__wrapper">
+                            No any messages yet
+                        </div>
+                    </div>
                 );
             }
         } else {

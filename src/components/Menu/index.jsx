@@ -2,7 +2,7 @@ import React from "react";
 import {slide as Burger} from "react-burger-menu";
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-import AddContact from "./AddContact"
+import { AddContact } from "modules";
 
 import "./Menu.scss";
 
@@ -16,11 +16,13 @@ class Menu extends React.Component {
                 settings: false,
                 about: false,
                 exit: false
-            }
+            },
+            menuOpen: false
         }
 
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.selectContact = this.selectContact.bind(this);
     }
 
     closeModal() {
@@ -46,15 +48,33 @@ class Menu extends React.Component {
         this.setState({ modals });
     }
 
+    selectContact(tag) {
+        this.closeModal();
+        this.closeMenu();
+        this.props.onSelect(tag);
+    }
+
+    closeMenu () {
+        this.setState({menuOpen: false})
+    }
+
+    handleStateChange (state) {
+        this.setState({menuOpen: state.isOpen})
+    }
+
     render() {
-        const img = "http://localhost:8000/dde36dad96c69fc2190d1763363714f3.png";
+        const img = `http://localhost:8000/${this.props.selfInfo?.img}`;
+        const name = `${this.props.selfInfo?.firstName} ${this.props.selfInfo?.lastName}`
         return (
-            <Burger pageWrapId={"page-wrap"}>
+            <Burger pageWrapId={"page-wrap"}
+                    isOpen={this.state.menuOpen}
+                    onStateChange={(state) => this.handleStateChange(state)}
+            >
                 <div className="menu">
                     <div className="menu__img" style={{backgroundImage : `url(${img})`}}>
                        <div className="menu__personal-data-wrapper">
-                           <div className="menu__name">Луи Армстронг</div>
-                           <div className="menu__tag">@siandreev</div>
+                           <div className="menu__name">{name}</div>
+                           <div className="menu__tag">{this.props.selfInfo?.tag}</div>
                        </div>
                     </div>
                     <div className="menu__options-list">
@@ -66,7 +86,13 @@ class Menu extends React.Component {
                                 <span className="option__text-wrapper">Add contact</span>
                             </div>
                         </ButtonBase>
-                        <AddContact open={this.state.modals.addContact} onClose={this.closeModal} />
+                        {
+                            this.state.modals.addContact ? <AddContact
+                                onSelect={this.selectContact}
+                                onClose={this.closeModal}
+                                wsp={this.props.wsp}
+                            /> : undefined
+                        }
                         <ButtonBase style={{width: "100%"}}>
                             <div className="option">
                                     <span className="option__icon-wrapper">

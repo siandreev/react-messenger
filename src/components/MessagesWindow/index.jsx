@@ -18,7 +18,7 @@ class MessagesWindow extends React.Component {
         return(
             <div className="messages-window">
                 <MessagesList person={this.props.person} messages={this.props.messages}/>
-                {this.props.person ? <MessagesInput onSend={this.props.onSend}/> : ""}
+                {this.props.messages ? <MessagesInput onSend={this.props.onSend}/> : ""}
             </div>
         )
     }

@@ -51,7 +51,6 @@ class ListItem extends React.Component {
                     <div className="list-item__name"><span>{person.firstName + " " + person.lastName}</span></div>
                     <div className="list-item__message"><span>{message}</span></div>
                 </div>
-                <hr/>
             </li>
         )
     }

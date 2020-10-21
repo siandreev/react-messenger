@@ -74,7 +74,8 @@ const windowActions = {
             type: "SOCKET:SET_OFFLINE_STATUS_TO_CONTACT",
             tag
         }
-    }
+    },
+
 }
 
 export default windowActions;

@@ -12,21 +12,28 @@ class ContactsList extends React.Component {
         this.onClick = this.onClick.bind(this);
         this.state = {contacts: props.contacts, selectedDialogTag: undefined};
         this.filterContacts = this.filterContacts.bind(this);
+
+
     }
 
     filterContacts(substr) {
         const filtered = this.props.contacts.filter(person =>
-            person.firstName.includes(substr) || person.lastName.includes(substr))
+            person.userInfo.firstName.includes(substr) || person.userInfo.lastName.includes(substr))
+        console.log(filtered);
         this.setState({contacts: filtered})
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (JSON.stringify(this.props.contacts) !== JSON.stringify(this.state.contacts)) {
+        if (this.props.selectedDialogTag && this.props.selectedDialogTag !== prevState.selectedDialogTag) {
+            this.setState({
+                selectedDialogTag: this.props.selectedDialogTag
+            });
+        }
+        if (JSON.stringify(this.props.contacts) !== JSON.stringify(prevProps.contacts)) {
             this.setState({
                 contacts: this.props.contacts
-            })
+            });
         }
-
     }
 
     onClick(tag) {
@@ -41,8 +48,7 @@ class ContactsList extends React.Component {
         return (
             <div className="contacts-list">
                 <SearchBar filter={this.filterContacts}/>
-                <Scrollbar style={{"height": "100%"}}>
-                    <div>
+                <Scrollbar style={{"height": "calc(100% - 80px)"}}>
                     <ul className="contacts-list__ul">
                         {
                             contacts.map(item =>
@@ -62,7 +68,6 @@ class ContactsList extends React.Component {
                                 />)
                         }
                     </ul>
-                    </div>
                 </Scrollbar>
             </div>
         );

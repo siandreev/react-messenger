@@ -1,18 +1,18 @@
 @import "src/styles/variables";
 
 $pic-size: 40px;
-.list-item {
-  height: 60px;
+.contact-item {
   display: block;
   clear: both;
   font-family: $roboto;
   cursor: pointer;
   margin-top: 0;
   padding-top: 0;
+  height: 60px;
 
   &__img {
     float: left;
-    padding: 10px;
+    padding: 10px 15px 10px 15px;
 
     img {
       height: $pic-size;
@@ -24,7 +24,6 @@ $pic-size: 40px;
 
   &__text-data {
     padding-top: 10px;
-    padding-right: 20px;
   }
 
   &__name {
@@ -34,7 +33,7 @@ $pic-size: 40px;
 
   }
 
-  &__message {
+  &__tag {
     font-size: 14px;
     color: $smoked;
 
@@ -43,25 +42,8 @@ $pic-size: 40px;
     white-space: nowrap;
   }
 
-  hr {
-    height: 1px;
-    margin: 15px 15px 0 60px;
-
-    color: gray;
-    background-color: gray;
-    border: none;
-  }
-
   &:hover {
     background-color: $hovered;
-  }
-
-  &_active {
-    background-color: $active;
-
-    &:hover {
-      background-color: $active;
-    }
   }
 }
 

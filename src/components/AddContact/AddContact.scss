@@ -40,4 +40,8 @@
     height: calc(100% - 120px);
     background-color: $secondary;
   }
+
+  &__ul {
+    padding-left: 0;
+  }
 }

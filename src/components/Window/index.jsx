@@ -11,7 +11,10 @@ class Window extends React.Component {
     render() {
         return(
             <div className="window__content">
-                <Menu />
+                <Menu
+                    wsp={this.props.wsp}
+                    onSelect={this.props.onSelect}
+                    selfInfo={this.props.selfInfo}/>
                 <main  id="page-wrap" className="window__content">
                     <div className="window__header"></div>
                     <div className="window__main-wrapper">
@@ -19,7 +22,8 @@ class Window extends React.Component {
                             <ContactsList
                                 onSelect={this.props.onSelect}
                                 selfInfo={this.props.selfInfo}
-                                contacts={this.props.dialogs}/>
+                                contacts={this.props.dialogs}
+                                selectedDialogTag={this.props.selectedDialogTag}/>
                         </div>
                         <div className="window__column">
                             <MessagesWindow

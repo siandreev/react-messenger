@@ -15,11 +15,13 @@ class SearchBar extends React.Component{
 
     render() {
         return(
-            <div className="search-bar">
-                <i className="fas fa-search"></i>
-                <label>
-                    <input type="text" onChange={this.onTextChanged} />
-                </label>
+            <div className="search-bar-background">
+                <div className="search-bar">
+                    <i className="fas fa-search" />
+                    <label>
+                        <input type="text" onChange={this.onTextChanged} />
+                    </label>
+                </div>
             </div>
         )
     }

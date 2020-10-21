@@ -151,7 +151,10 @@ class WindowModule extends React.Component {
                     selfInfo={this.props.selfInfo}
                     messages={messages}
                     person={person}
-                    dialogs={this.props.dialogs || []} />
+                    dialogs={this.props.dialogs || []}
+                    selectedDialogTag={this.state.selectedDialog}
+                    wsp={this.state.wsp}
+                />
             )
         } else {
             return <Redirect to="/login" />
