@@ -2,7 +2,7 @@ import React from "react";
 import {slide as Burger} from "react-burger-menu";
 import ButtonBase from '@material-ui/core/ButtonBase';
 
-import Settings from "components/Settings";
+import Settings from "modules/Settings";
 
 import { AddContact } from "modules";
 
@@ -65,7 +65,7 @@ class Menu extends React.Component {
     }
 
     render() {
-        const img = `http://localhost:8000/${this.props.selfInfo?.img}`;
+        const img = `http://localhost:8000/${this.props.selfInfo?.img || "default.jpg"}`;
         const name = `${this.props.selfInfo?.firstName} ${this.props.selfInfo?.lastName}`
         return (
             <Burger pageWrapId={"page-wrap"}

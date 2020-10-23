@@ -14,6 +14,7 @@ $white: #eeeeee;
 $smoked: rgba($white, 0.7);
 $hovered: #4a4a4a;
 $danger: #a50a20;
+$incorrect: #f34336;
 
 :export {
   primary: $primary;
@@ -26,4 +27,6 @@ $danger: #a50a20;
   smoked: $smoked;
   hovered: $hovered;
   dark: $dark;
+  danger: $danger;
+  incorrect: $incorrect;
 }

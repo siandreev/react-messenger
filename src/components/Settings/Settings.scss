@@ -85,4 +85,8 @@
     display: flex;
     justify-content: space-between;
   }
+
+  &__upload-input {
+    display: none;
+  }
 }

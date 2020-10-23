@@ -47,6 +47,14 @@ const TextFieldJSS = styled(TextField)({
     '& label': {
         color: variables.smoked,
     },
+    '&.wrong': {
+        '& label, input': {
+            color: variables.incorrect,
+        },
+        '& .MuiInput-underline:after': {
+            borderBottomColor: variables.incorrect,
+        }
+    }
 });
 
 export {ButtonBaseJSS as ButtonBase, TextFieldJSS as TextField, ButtonJSS as Button};

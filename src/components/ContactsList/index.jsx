@@ -29,7 +29,7 @@ class ContactsList extends React.Component {
                 selectedDialogTag: this.props.selectedDialogTag
             });
         }
-        if (JSON.stringify(this.props.contacts) !== JSON.stringify(prevProps.contacts)) {
+        if (this.props.contacts !== prevProps.contacts) {
             this.setState({
                 contacts: this.props.contacts
             });

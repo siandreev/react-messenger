@@ -21,11 +21,21 @@ const windowActions = {
         const dialogs = await wsp.sendRequest({jsonrpc: "2.0", method: "getDialogsList"});
         dispatch(windowActions.setDialogsList(dialogs.result));
     },
+    updateDialogsList(updatedContact) {
+        return {
+            type: "SOCKET:UPDATE_DIALOGS_LIST",
+            updatedContact
+        }
+    },
     setSelfInfo(info) {
         return {
             type: "SOCKET:SET_SELF_INFO",
             info
         }
+    },
+    updateSelfInfo: (wsp, params) => async dispatch => {
+        const response = await wsp.sendRequest({jsonrpc: "2.0", method: "setSelfInfo", params});
+        dispatch(windowActions.setSelfInfo(response.result))
     },
     setMessagesWithUser(tag, messages) {
         return {

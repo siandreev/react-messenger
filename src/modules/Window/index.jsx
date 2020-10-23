@@ -57,11 +57,12 @@ class WindowModule extends React.Component {
             this.props.setSelfInfo(response.result);
         } catch {
             this.setState({
-                authorized: true
+                authorized: false
             });
         }
-
     }
+
+    updateSelfInfo
 
     onNotification(data) {
         const message = JSON.parse(data);
@@ -92,6 +93,9 @@ class WindowModule extends React.Component {
                 break;
             case 3100:
                 this.props.setOfflineStatusToContact(message.body.loggedOutUserTag);
+                break;
+            case 3200:
+                this.props.updateDialogsList(message.body);
                 break;
             default:
         }

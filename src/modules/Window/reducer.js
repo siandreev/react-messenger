@@ -10,6 +10,20 @@ export default function(state = {messages: {}}, action) {
         }
         case "SOCKET:SET_DIALOGS_LIST":
             return Object.assign({}, state, {dialogs: action.dialogsList});
+        case "SOCKET:UPDATE_DIALOGS_LIST": {
+            const dialogs = state.dialogs.slice();
+            const dialog = dialogs.find(dialog => dialog.userInfo.tag === action.updatedContact.tag);
+            for (let key in action.updatedContact) {
+                if (key !== "tag") {
+                    dialog.userInfo = Object.assign({},
+                        {...dialog.userInfo},
+                        {[key]: action.updatedContact[key]});
+                }
+            }
+            const newState = Object.assign({}, state);
+            newState.dialogs = dialogs;
+            return newState;
+        }
         case "SOCKET:SET_SELF_INFO":
             return Object.assign({}, state, {selfInfo: action.info})
         case "SOCKET:SET_MESSAGES_WITH_USER": {
