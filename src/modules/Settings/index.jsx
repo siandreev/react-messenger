@@ -1,5 +1,5 @@
 import React from 'react';
-import Settings from "components/Settings";
+import { Settings } from "components";
 import api from "core/axios/api.js";
 import {connect} from "react-redux";
 import windowActions from "modules/Window/action";

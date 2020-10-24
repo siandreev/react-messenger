@@ -1,10 +1,8 @@
 import React from "react";
 import {slide as Burger} from "react-burger-menu";
 import ButtonBase from '@material-ui/core/ButtonBase';
-
-import Settings from "modules/Settings";
-
-import { AddContact } from "modules";
+import { About } from "components";
+import { AddContact, Settings } from "modules";
 
 import "./Menu.scss";
 
@@ -110,7 +108,7 @@ class Menu extends React.Component {
                                 wsp={this.props.wsp}
                             /> : undefined
                         }
-                        <ButtonBase style={{width: "100%"}}>
+                        <ButtonBase style={{width: "100%"}} onClick={() => this.openModal("about")}>
                             <div className="option">
                                 <span className="option__icon-wrapper">
                                     <i className="fas fa-info-circle" />
@@ -118,6 +116,11 @@ class Menu extends React.Component {
                                 <span className="option__text-wrapper">About</span>
                             </div>
                         </ButtonBase>
+                        {
+                            this.state.modals.about ? <About
+                                onClose={this.closeModal}
+                            /> : undefined
+                        }
                     </div>
                     <div className="menu__exit-wrapper">
                         <ButtonBase style={{width: "100%"}}>
