@@ -61,7 +61,7 @@ class ContactsList extends React.Component {
                                         lastName: item.userInfo.lastName,
                                         message: item.text,
                                         isOnline: item.userInfo.isOnline,
-                                        img: `http://localhost:8000/${item.userInfo.img}`
+                                        img: `/img/${item.userInfo.img}`
                                      }}
                                     clickHandler={this.onClick}
                                     isActive={this.state.selectedDialogTag === item.userInfo.tag}

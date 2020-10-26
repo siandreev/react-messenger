@@ -61,7 +61,7 @@ class AddContact extends React.Component {
                                                         firstName: contact.firstName,
                                                         lastName: contact.lastName,
                                                         isOnline: contact.isOnline,
-                                                        img: `http://localhost:8000/${contact.img}`
+                                                        img: `/img/${contact.img}`
                                                     }}
                                                     clickHandler={this.onClick}
                                                 />)

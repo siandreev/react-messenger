@@ -76,6 +76,20 @@ class MessagesInput extends React.Component {
     }
 
     render() {
+        let pickerStyle =  {
+            position: 'absolute',
+            bottom: '25px',
+            right: '20px'
+        };
+
+        if (window.innerWidth <= 426) {
+            pickerStyle =  {
+                position: 'absolute',
+                bottom: '25px',
+                right: '-40px'
+            };
+        }
+
         const shakeClass = this.state.invalid ? " messages-input__textbox_invalid" : "";
         let emoji;
         let emojiIconClass = "";
@@ -84,13 +98,7 @@ class MessagesInput extends React.Component {
             emoji = (
                 <Picker theme="dark"
                     title=""
-                    style={
-                        {
-                            position: 'absolute',
-                            bottom: '25px',
-                            right: '20px'
-                        }
-                    }
+                    style={ pickerStyle }
                     onSelect={this.insertEmoji}
                 />);
         }

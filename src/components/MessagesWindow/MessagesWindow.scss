@@ -7,4 +7,45 @@
   justify-content: flex-end;
   background-color: $primary;
 
+  position: relative;
+
+  &__back {
+    display: block;
+    position: absolute;
+    top: -47px;
+    right: 10px;
+
+    i {
+      font-size: 20px;
+      color: $white;
+    }
+  }
+
+  &__person-info-wrapper {
+    position: absolute;
+    top: -47px;
+    right: 50px;
+    width: calc(100% - 100px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__person-info {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__name {
+    padding-left: 10px;
+
+    font-size: 14px;
+    font-family: $roboto sans-serif;
+    color: $white;
+  }
+
+  .MuiAvatar-root {
+    display: inline-flex;
+  }
 }

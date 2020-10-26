@@ -1,7 +1,9 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import {Button, Paper, TextField} from './AuthorizationForm.jsx';
 import Modal from "../Modal"
+
+import IconButton from "@material-ui/core/IconButton";
 
 import './AuthorizationForm.scss';
 
@@ -29,6 +31,7 @@ class AuthorizationForm extends React.Component{
         this.setPassword = this.setPassword.bind(this);
         this.submit = this.props.submit.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.redirectToRegistration = this.redirectToRegistration.bind(this);
     }
 
     setEmail(e) {
@@ -58,11 +61,26 @@ class AuthorizationForm extends React.Component{
         })
     }
 
+    redirectToRegistration() {
+        this.setState({
+            redirectToRegistration: true
+        });
+    }
+
     render() {
+        if (this.state.redirectToRegistration) {
+            return <Redirect to="/signup" />
+        }
+
         const fields = this.state.fields;
         return(
             <div className="authorization-form">
                 <Paper elevation={3}>
+                    <div className="authorization-form__register">
+                        <IconButton onClick={this.redirectToRegistration}>
+                            <i className="fas fa-user-plus" />
+                        </IconButton>
+                    </div>
                     <div className="authorization-form__header">
                         <h2>Sign up</h2>
                     </div>

@@ -3,13 +3,15 @@ import windowActions from "./action";
 import {connect} from "react-redux";
 import { Redirect }  from 'react-router-dom';
 import WebSocketAsPromised from "websocket-as-promised";
-import {Window} from "components";
+import {Window, WaitAnimation} from "components";
 
 class WindowModule extends React.Component {
     constructor(props) {
         super(props);
 
-        const wsp = new WebSocketAsPromised("ws://localhost:8001", {
+        const host = window.location.href.split('/')[2];
+        const protocol = window.location.href.split(':')[0] === "http" ? "ws" : "wss";
+        const wsp = new WebSocketAsPromised(`${protocol}://${host}/api`, {
             packMessage: data => JSON.stringify(data),
             unpackMessage: data => JSON.parse(data),
             attachRequestId: (data, requestId) => Object.assign({id: requestId}, data),
@@ -25,7 +27,7 @@ class WindowModule extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.authorized && !this.props.dialogs) {
+        if (this.state.authorized && !this.props.dialogs && this.props.selfInfo) {
             this.props.fetchDialogsList(this.state.wsp);
         }
     }
@@ -34,7 +36,7 @@ class WindowModule extends React.Component {
         const wsp = this.state.wsp;
         wsp.onClose.addListener(this.onClose.bind(this));
         wsp.open().then(() => {
-            setTimeout(() => this.getSelfInfo(), 1000);
+            setTimeout(() => this.getSelfInfo(), 3000);
         });
 
         setTimeout(()=> {
@@ -55,14 +57,13 @@ class WindowModule extends React.Component {
                 authorized: true
             });
             this.props.setSelfInfo(response.result);
-        } catch {
+        } catch (e) {
+            console.log(e);
             this.setState({
                 authorized: false
             });
         }
     }
-
-    updateSelfInfo
 
     onNotification(data) {
         const message = JSON.parse(data);
@@ -119,6 +120,12 @@ class WindowModule extends React.Component {
         });
     }
 
+    removeSelection() {
+        this.setState({
+            selectedDialog: null
+        });
+    }
+
     onSend(text) {
         const receiverTag = this.state.selectedDialog;
         this.setState(state => {
@@ -137,14 +144,15 @@ class WindowModule extends React.Component {
 
     render() {
         if (this.state.authorized === undefined) {
-            return <div>Wait...</div>
+            return <WaitAnimation />
         }
 
         let messages;
         let person;
         if (this.state.selectedDialog) {
             messages = this.props.messages[this.state.selectedDialog];
-            person = this.props.dialogs.find(dialog => dialog.userInfo.tag === this.state.selectedDialog)?.userInfo;
+            person = this.props.dialogs.find(dialog => dialog.userInfo.tag === this.state.selectedDialog)?.userInfo ||
+                this.props.addContact?.find(dialog => dialog.tag === this.state.selectedDialog);
         }
 
         if (this.state.authorized) {
@@ -152,6 +160,7 @@ class WindowModule extends React.Component {
                 <Window
                     onSelect={this.onSelect.bind(this)}
                     onSend={this.onSend.bind(this)}
+                    removeSelection={this.removeSelection.bind(this)}
                     selfInfo={this.props.selfInfo}
                     messages={messages}
                     person={person}
@@ -171,7 +180,8 @@ function mapStateToProps(state) {
     return {
         dialogs: state.socket.dialogs,
         selfInfo: state.socket.selfInfo,
-        messages: state.socket.messages
+        messages: state.socket.messages,
+        addContact: state.addContact?.contacts
     };
 }
 

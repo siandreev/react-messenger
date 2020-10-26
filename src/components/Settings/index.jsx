@@ -115,7 +115,7 @@ class Settings extends React.Component {
 
     render() {
         const imgName = this.state.image.value || "default.jpg";
-        const img = `http://localhost:8000/${imgName}`;
+        const img = `/img/${imgName}`;
         let pictureContainer = (
             <div className="settings__img" style={{backgroundImage: `url(${img})`}}>
                 <div className="settings__hint">
@@ -139,38 +139,40 @@ class Settings extends React.Component {
                     <IconButton onClick={this.props.onClose}>
                         <i className="fas fa-times add-contact__icon" />
                     </IconButton>
+                    <div className="settings__header">
+                        <h2>Edit profile</h2>
+                    </div>
                     <div className="settings__wrapper">
-                        <div className="settings__header">
-                            <h2>Settings</h2>
-                        </div>
-                        <div className="settings__img-wrapper">
-                            <input
-                                accept="image/*"
-                                className="settings__upload-input"
-                                id="upload-file-button"
-                                type="file"
-                                ref={this.inputRef}
-                                onChange={this.uploadImage}
-                            />
-                            <ButtonBase onClick={this.openFileDialog}>
-                                { pictureContainer }
-                            </ButtonBase>
-                        </div>
-                        <div className="settings__text-fields-wrapper">
-                            <TextField
-                                label="First name"
-                                onChange={this.onNameChanges("firstName")}
-                                defaultValue={this.props.selfInfo?.firstName}
-                                error={!this.state.firstName.correct}
-                                className={this.state.firstName.correct ? "" : "wrong"}
-                            />
-                            <TextField
-                                label="Last name"
-                                onChange={this.onNameChanges("lastName")}
-                                defaultValue={this.props.selfInfo?.lastName}
-                                error={!this.state.lastName.correct}
-                                className={this.state.lastName.correct ? "" : "wrong"}
-                            />
+                        <div className="settings__mobile-wrapper">
+                            <div className="settings__img-wrapper">
+                                <input
+                                    accept="image/*"
+                                    className="settings__upload-input"
+                                    id="upload-file-button"
+                                    type="file"
+                                    ref={this.inputRef}
+                                    onChange={this.uploadImage}
+                                />
+                                <ButtonBase onClick={this.openFileDialog}>
+                                    { pictureContainer }
+                                </ButtonBase>
+                            </div>
+                            <div className="settings__text-fields-wrapper">
+                                <TextField
+                                    label="First name"
+                                    onChange={this.onNameChanges("firstName")}
+                                    defaultValue={this.props.selfInfo?.firstName}
+                                    error={!this.state.firstName.correct}
+                                    className={this.state.firstName.correct ? "" : "wrong"}
+                                />
+                                <TextField
+                                    label="Last name"
+                                    onChange={this.onNameChanges("lastName")}
+                                    defaultValue={this.props.selfInfo?.lastName}
+                                    error={!this.state.lastName.correct}
+                                    className={this.state.lastName.correct ? "" : "wrong"}
+                                />
+                            </div>
                         </div>
                         <div className="settings__buttons-wrapper">
                             <Button onClick={this.props.onClose}>Close</Button>

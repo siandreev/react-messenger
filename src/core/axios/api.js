@@ -1,4 +1,4 @@
-import axios from './index';
+import axios from 'axios';
 
 export default  {
     login({email, password}) {
@@ -17,5 +17,8 @@ export default  {
         } catch (e) {
             return {status: "ERR", reason: e}
         }
+    },
+    exit() {
+        return axios.get("/exit", {withCredentials: true});
     }
 }

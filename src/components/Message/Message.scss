@@ -51,3 +51,26 @@
     float: right;
   }
 }
+
+@media only screen and (max-width: 426px) {
+  .message {
+    &__wrapper {
+      max-width: 85%;
+      min-width: 40%;
+      width: unset;
+    }
+
+    &__time {
+      padding-left: 5px;
+      font-size: 12px;
+    }
+
+    &__text {
+      font-size: 14px;
+    }
+
+    &__content {
+      padding: 5px 20px;
+    }
+  }
+}

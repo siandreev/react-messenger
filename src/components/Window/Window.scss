@@ -2,7 +2,6 @@
 
 .window {
   &__content {
-
     height: 100%;
   }
 
@@ -28,7 +27,6 @@
     flex-basis: 33.33%;
     flex-grow: 0;
     height: 100%;
-    background-color: $secondary;
 
     max-width: 33.33%;
     min-width: 240px;
@@ -40,5 +38,11 @@
     flex-grow: 0;
     height: 100%;
   }
+}
 
+@media only screen and (max-width: 426px) {
+  .window__main-wrapper {
+    display: block;
+    height: calc(100% - 50px);
+  }
 }

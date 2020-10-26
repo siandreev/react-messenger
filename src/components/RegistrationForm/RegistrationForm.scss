@@ -1,6 +1,7 @@
 @import "src/styles/variables";
 
 .registration-form {
+  position: relative;
   width: 400px;
   height: 500px;
   display: flex;
@@ -8,6 +9,16 @@
   align-items: center;
 
   font-family: $roboto sans-serif;
+
+  &__login {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+
+    i {
+      color: $dark;
+    }
+  }
 
   &__header {
     flex: 0 1 60px;

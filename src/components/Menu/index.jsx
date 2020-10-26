@@ -5,6 +5,7 @@ import { About } from "components";
 import { AddContact, Settings } from "modules";
 
 import "./Menu.scss";
+import {Redirect} from "react-router-dom";
 
 class Menu extends React.Component {
     constructor(props) {
@@ -63,7 +64,10 @@ class Menu extends React.Component {
     }
 
     render() {
-        const img = `http://localhost:8000/${this.props.selfInfo?.img || "default.jpg"}`;
+        if (this.props.confirmedExit) {
+            return <Redirect to="/login" />
+        }
+        const img = `/img/${this.props.selfInfo?.img || "default.jpg"}`;
         const name = `${this.props.selfInfo?.firstName} ${this.props.selfInfo?.lastName}`
         return (
             <Burger pageWrapId={"page-wrap"}
@@ -81,9 +85,9 @@ class Menu extends React.Component {
                         <ButtonBase style={{width: "100%"}} onClick={() => this.openModal("addContact")}>
                             <div className="option">
                                 <span className="option__icon-wrapper">
-                                    <i className="far fa-address-card" />
+                                     <i className="far fa-address-card" />
                                 </span>
-                                <span className="option__text-wrapper">Add contact</span>
+                                <span className="option__text-wrapper">Find contact</span>
                             </div>
                         </ButtonBase>
                         {
@@ -96,9 +100,9 @@ class Menu extends React.Component {
                         <ButtonBase style={{width: "100%"}} onClick={() => this.openModal("settings")}>
                             <div className="option">
                                     <span className="option__icon-wrapper">
-                                        <i className="fas fa-cog" />
+                                        <i className="fas fa-pen" />
                                     </span>
-                                    <span className="option__text-wrapper">Settings</span>
+                                    <span className="option__text-wrapper">Edit profile</span>
                             </div>
                         </ButtonBase>
                         {
@@ -123,7 +127,7 @@ class Menu extends React.Component {
                         }
                     </div>
                     <div className="menu__exit-wrapper">
-                        <ButtonBase style={{width: "100%"}}>
+                        <ButtonBase style={{width: "100%"}} onClick={this.props.onExit}>
                             <div className="option">
                                 <span className="option__icon-wrapper">
                                     <i className="fas fa-times" />

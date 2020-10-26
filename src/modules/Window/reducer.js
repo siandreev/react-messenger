@@ -44,22 +44,23 @@ export default function(state = {messages: {}}, action) {
             return Object.assign({}, state, {messages: messagesObject});
         }
         case "SOCKET:SET_ONLINE_STATUS_TO_CONTACT": {
-            const dialogs = state.dialogs.map(dialog => {
+            const dialogs = state.dialogs?.map(dialog => {
                 if (dialog.userInfo.tag === action.tag) {
                     dialog.userInfo.isOnline = true;
                 }
                 return JSON.parse(JSON.stringify(dialog));
             })
-            return Object.assign({}, state, {dialogs});
+            return dialogs? Object.assign({}, state, {dialogs}) : state;
         }
         case "SOCKET:SET_OFFLINE_STATUS_TO_CONTACT": {
-            const dialogs = state.dialogs.map(dialog => {
+            const dialogs = state.dialogs?.map(dialog => {
                 if (dialog.userInfo.tag === action.tag) {
                     dialog.userInfo.isOnline = false;
                 }
                 return JSON.parse(JSON.stringify(dialog));
             })
-            return Object.assign({}, state, {dialogs});
+
+            return dialogs? Object.assign({}, state, {dialogs}) : state;
         }
         default:
             return state;

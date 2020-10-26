@@ -1,11 +1,22 @@
 @import "styles/variables";
 
 .authorization-form {
+  position: relative;
   width: 400px;
   height: 400px;
   padding-top: 30px;
 
   font-family: $roboto sans-serif;
+
+  &__register {
+    position: absolute;
+    top: 35px;
+    right: 5px;
+
+    i {
+      color: $dark;
+    }
+  }
 
   &__row {
     margin-bottom: 15px;

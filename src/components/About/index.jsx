@@ -43,47 +43,49 @@ class About extends React.Component {
                     <IconButton onClick={this.props.onClose}>
                         <i className="fas fa-times about__exit" />
                     </IconButton>
+                    <div className="about__header">
+                        <h2>About</h2>
+                    </div>
                     <div className="about__wrapper">
-                        <div className="about__header">
-                            <h2>About</h2>
-                        </div>
-                        <div className="about__icon-wrapper">
-                            <div className="about__way-icon">
-                                <h3><i className="fas fa-envelope about__icon"/></h3>
-                            </div>
-                            <div>version 1.00</div>
-                        </div>
-                        <div className="about__created-by">
-                            Created by <span>Sergey Andreev</span>
-                        </div>
-
-                            <CopyToClipboard text="andreev.sergey.i@yandex.ru" onCopy={this.onCopy}>
-                                <div className="about__email-wrapper">
-                                    <Tooltip open={this.state.isTooltipOpen} title="Copied!">
-                                    <ButtonBaseJSS>
-                                        <span>andreev.sergey.i@yandex.ru</span>
-                                        <i className="fas fa-clipboard"/>
-                                    </ButtonBaseJSS>
-                                    </Tooltip>
+                        <div className="about__mobile-wrapper">
+                            <div className="about__icon-wrapper">
+                                <div className="about__way-icon">
+                                    <h3><i className="fas fa-envelope about__icon"/></h3>
                                 </div>
-                            </CopyToClipboard>
+                                <div>version 1.00</div>
+                            </div>
+                            <div className="about__created-by">
+                                Created by <span>Sergey Andreev</span>
+                            </div>
 
-                        <div className="about__buttons-container">
-                            <a href="https://github.com/siandreev" target="_blank" rel="noopener noreferrer">
-                                <AwesomeButtonSocial
-                                    type="github"
-                                    url="https://github.com/"
-                                    onPress={()=>{}}>
-                                    Github
-                                </AwesomeButtonSocial>
-                            </a>
-                            <a href="https://t.me/siandreev" target="_blank" rel="noopener noreferrer">
-                                <AwesomeButton
-                                    type="primary">
-                                    <i className="fab fa-telegram-plane about__telegram-icon" />
-                                    Telegram
-                                </AwesomeButton>
-                            </a>
+                                <CopyToClipboard text="andreev.sergey.i@yandex.ru" onCopy={this.onCopy}>
+                                    <div className="about__email-wrapper">
+                                        <Tooltip open={this.state.isTooltipOpen} title="Copied!">
+                                        <ButtonBaseJSS>
+                                            <span>andreev.sergey.i@yandex.ru</span>
+                                            <i className="fas fa-clipboard"/>
+                                        </ButtonBaseJSS>
+                                        </Tooltip>
+                                    </div>
+                                </CopyToClipboard>
+
+                            <div className="about__buttons-container">
+                                <a href="https://github.com/siandreev" target="_blank" rel="noopener noreferrer">
+                                    <AwesomeButtonSocial
+                                        type="github"
+                                        url="https://github.com/"
+                                        onPress={()=>{}}>
+                                        Github
+                                    </AwesomeButtonSocial>
+                                </a>
+                                <a href="https://t.me/siandreev" target="_blank" rel="noopener noreferrer">
+                                    <AwesomeButton
+                                        type="primary">
+                                        <i className="fab fa-telegram-plane about__telegram-icon" />
+                                        Telegram
+                                    </AwesomeButton>
+                                </a>
+                            </div>
                         </div>
                         <div className="about__buttons-wrapper">
                             <Button onClick={this.props.onClose}>Close</Button>

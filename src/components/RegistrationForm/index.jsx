@@ -1,10 +1,11 @@
 import React from "react";
-import { useHistory } from 'react-router-dom';
+import {Redirect, useHistory} from 'react-router-dom';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import {Button, Paper, TextField} from './RegistrationForm.jsx';
 import Modal from "../Modal"
 
 import './RegistrationForm.scss';
+import IconButton from "@material-ui/core/IconButton";
 
 class RegistrationForm extends React.Component{
     constructor(props) {
@@ -45,6 +46,7 @@ class RegistrationForm extends React.Component{
         this.setPassword = this.setPassword.bind(this);
         this.submit = this.props.submit.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.redirectToLogin = this.redirectToLogin.bind(this);
     }
 
     setTag(e) {
@@ -86,11 +88,26 @@ class RegistrationForm extends React.Component{
         })
     }
 
+    redirectToLogin() {
+        this.setState({
+            redirectToLogin: true
+        });
+    }
+
     render() {
+        if (this.state.redirectToLogin) {
+            return <Redirect to="/login" />
+        }
+
         const fields = this.state.fields;
         return(
             <div className="registration-form">
                 <Paper elevation={3}>
+                    <div className="registration-form__login">
+                        <IconButton onClick={this.redirectToLogin}>
+                            <i className="fas fa-sign-in-alt" />
+                        </IconButton>
+                    </div>
                     <div className="registration-form__header">
                         <h2>Sign up</h2>
                     </div>

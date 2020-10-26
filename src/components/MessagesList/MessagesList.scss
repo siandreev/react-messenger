@@ -43,3 +43,11 @@ $message-padding: 20px;
     background-color: $secondary;
   }
 }
+
+@media only screen and (max-width: 426px) {
+  .messages-list {
+    ul {
+      padding: 0 10px;
+    }
+  }
+}
