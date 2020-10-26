@@ -10,6 +10,8 @@ $pic-size: 40px;
   margin-top: 0;
   padding-top: 0;
 
+  position: relative;
+
   &__img {
     float: left;
     padding: 10px;
@@ -24,7 +26,7 @@ $pic-size: 40px;
 
   &__text-data {
     padding-top: 10px;
-    padding-right: 20px;
+    padding-right: 30px;
   }
 
   &__name {
@@ -62,6 +64,40 @@ $pic-size: 40px;
     &:hover {
       background-color: $active;
     }
+
+    .list-item__unread-messages {
+      background-color: $secondary;
+    }
+  }
+
+  &__new-messages {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: $primary;
+    color: $white;
+    font-size: 14px;
+  }
+
+  &__unread-messages {
+    position: absolute;
+    top: 25px;
+    right: 15px;
+
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+
+    background-color: $active;
   }
 }
 

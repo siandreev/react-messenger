@@ -32,8 +32,23 @@ class ListItem extends React.Component {
     }
 
     render() {
-        const avatarStatus = this.props.isActive ? "selected" : this.state.status;
         const person = this.props.person;
+
+        let modifier;
+        if (person.unreadCount) {
+            if (person.isIncoming) {
+                modifier = (
+                    <div className="list-item__new-messages">
+                        {person.unreadCount}
+                    </div>
+                );
+            } else {
+                modifier = <div className="list-item__unread-messages"/>;
+            }
+        }
+
+
+        const avatarStatus = this.props.isActive ? "selected" : this.state.status;
         const isActive = this.props.isActive;
         const message = person.isIncoming ? person.message : `You: ${person.message}`;
         const active = isActive ? " list-item_active" : "";
@@ -56,6 +71,7 @@ class ListItem extends React.Component {
                     <div className="list-item__name"><span>{person.firstName + " " + person.lastName}</span></div>
                     <div className="list-item__message"><span>{message}</span></div>
                 </div>
+                {modifier}
             </li>
         )
     }

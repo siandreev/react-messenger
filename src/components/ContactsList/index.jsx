@@ -60,6 +60,7 @@ class ContactsList extends React.Component {
                                         firstName: item.userInfo.firstName,
                                         lastName: item.userInfo.lastName,
                                         message: item.text,
+                                        unreadCount: item.unreadCount,
                                         isOnline: item.userInfo.isOnline,
                                         img: `/img/${item.userInfo.img}`
                                      }}

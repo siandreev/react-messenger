@@ -32,16 +32,32 @@ export default function(state = {messages: {}}, action) {
             return Object.assign({}, state, {messages: messagesObject});
         }
         case "SOCKET:MARK_AS_READ": {
+            const result = {};
             const messagesObject = Object.assign({}, state.messages);
+            const opponentRole = action.amIReceiver ? "senderTag" : "receiverTag";
             if (messagesObject[action.tag]) {
-                const role = action.amIReceiver ? "senderTag" : "receiverTag";
                 messagesObject[action.tag].forEach(message => {
-                    if (message[role] === action.tag) {
+                    if (message[opponentRole] === action.tag) {
                         message.isRead = true;
                     }
                 });
+
+                result.messages = messagesObject;
             }
-            return Object.assign({}, state, {messages: messagesObject});
+
+            const dialogs = state.dialogs?.slice();
+            const dialog = dialogs?.find(dialog => dialog.userInfo.tag === action.tag);
+
+            if (dialog) {
+                const IHasReadLastMessage = action.amIReceiver && dialog.senderTag === dialog.userInfo.tag;
+                const MyLastMessageHasBeenRead = !action.amIReceiver && dialog.receiverTag === dialog.userInfo.tag;
+                if (IHasReadLastMessage || MyLastMessageHasBeenRead) {
+                    dialog.unreadCount = 0;
+                }
+                result.dialogs = dialogs;
+            }
+
+            return Object.assign({}, state, result);
         }
         case "SOCKET:SET_ONLINE_STATUS_TO_CONTACT": {
             const dialogs = state.dialogs?.map(dialog => {

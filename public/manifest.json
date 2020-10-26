@@ -1,0 +1,26 @@
+{
+  "name": "Messenger",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "36x36",
+      "type": "image\/svg"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "48x48",
+      "type": "image\/svg"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "72x72",
+      "type": "image\/svg"
+    },
+    {
+      "src": "icon.svg",
+      "sizes": "96x96",
+      "type": "image\/svg"
+    }
+  ]
+}
