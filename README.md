@@ -42,6 +42,14 @@ Authorization form
 Mobile version
 ![alt text](https://github.com/siandreev/react-messenger/blob/master/docs/img/mobile.png?raw=true)
 
+## Networking algorithm
+
+The situation when the user is logged in (JWT is sent in cookies)
+![alt text](https://github.com/siandreev/react-messenger/blob/master/docs/img/scheme1.png?raw=true)
+
+The situation when the user is logged **not** in
+![alt text](https://github.com/siandreev/react-messenger/blob/master/docs/img/scheme2.png?raw=true)
+
 ## Configuring and running locally
 Clone and install [server](https://github.com/siandreev/messenger-server), configure it according to the README and run.
 
