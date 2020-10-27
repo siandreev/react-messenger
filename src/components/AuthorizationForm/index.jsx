@@ -82,7 +82,7 @@ class AuthorizationForm extends React.Component{
                         </IconButton>
                     </div>
                     <div className="authorization-form__header">
-                        <h2>Sign up</h2>
+                        <h2>Sign in</h2>
                     </div>
                     <div className="authorization-form__fields">
                         <div className="authorization-form__row">
@@ -111,7 +111,7 @@ class AuthorizationForm extends React.Component{
                         <Button
                             variant="contained"
                             onClick={this.submit}
-                        >Sign up
+                        >Sign in
                         </Button>
                         <Modal
                             open={this.state.modal.open}

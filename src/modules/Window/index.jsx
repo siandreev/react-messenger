@@ -150,8 +150,8 @@ class WindowModule extends React.Component {
         let messages;
         let person;
         if (this.state.selectedDialog) {
-            messages = this.props.messages[this.state.selectedDialog];
-            person = this.props.dialogs.find(dialog => dialog.userInfo.tag === this.state.selectedDialog)?.userInfo ||
+            messages = this.props.messages?.[this.state.selectedDialog];
+            person = this.props.dialogs?.find(dialog => dialog.userInfo.tag === this.state.selectedDialog)?.userInfo ||
                 this.props.addContact?.find(dialog => dialog.tag === this.state.selectedDialog);
         }
 

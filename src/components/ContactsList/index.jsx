@@ -19,7 +19,6 @@ class ContactsList extends React.Component {
     filterContacts(substr) {
         const filtered = this.props.contacts.filter(person =>
             person.userInfo.firstName.includes(substr) || person.userInfo.lastName.includes(substr))
-        console.log(filtered);
         this.setState({contacts: filtered})
     }
 
